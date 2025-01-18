@@ -3,12 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>js project</title>
+    <title>Document</title>
 </head>
 <body>
-    <h1>This is the Javascript project</h1>
-    <p>kdjjfdklj</p>
-    <p>kldjskfhdsklhf</p>
+    
+    <h1 id="main">hekkiw</h1>
+    <h1 id="sub">djfdkjfdk</h1>
+    <h1 id="subsub">djfdkjfdk</h1>
+    <button onclick="changeStyle()" ondblclick="changeDoubleClick()">changeStyle</button>
+    <input id="Inp" on onmouseover="inpHclick()" onfocus="inpHclick()" onmouseleave="leave()" type="text">
+
+
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis error ipsa obcaecati nihil facilis amet autem quos aliquid officiis qui! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis, id explicabo molestias aut neque quos ratione quaerat odio deleniti alias dolores assumenda eligendi eum illo placeat officia ab pariatur dolore consectetur vitae libero? Voluptates, facere. Ipsa eligendi sequi velit modi asperiores laudantium, distinctio soluta mollitia minima ad quod dignissimos veniam?</p>
+    <script>
+        // select the elements
+        let mainOb = document.getElementById('main');
+
+        let inpH = document.querySelector('#Inp');
+
+        
+            
+
+        // applying style on object
+        const inpHclick = () =>{
+               inpH.style.border='2px solid red';
+        }
+        const leave = () =>{
+               inpH.style.background='  ';
+        }
+
+        const changeDoubleClick = () =>{
+            mainOb.style.color='';
+            mainOb.style.fontSize='';
+                 mainOb.style.border='';
+                mainOb.style.padding=''
+                mainOb.style.backgroundColor=''
+        }
+
+        const changeStyle = () =>{
+
+                mainOb.style.color='blue';
+                mainOb.style.fontSize='40px';
+                mainOb.style.border='3px solid red';
+                mainOb.style.padding='40px'
+                mainOb.style.backgroundColor='gray'
+                document.body.style.background='black';
+                document.body.style.color="white";
+
+        }
+        console.log(inpHclick);
+      
+        for (let e of mainOb ){
+            console.log(e);
+        }
+
+    </script>
 
 </body>
 </html>

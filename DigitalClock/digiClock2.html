@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style> .clock{display: flex; justify-content: center; align-items: center; color: white; } body{background-color: black;}</style>
+<body>
+
+    <h1 class="clock">30:30:30</h1>
+    
+</body>
+<script>
+    const getTime = () => {
+    let d = new Date();
+    let h = d.getHours();
+    // console.log(d);  
+    let m = d.getMinutes();
+    let s = d.getSeconds();
+    let mi = d.getMilliseconds( );
+
+
+    return ` ${h} : ${m} : ${s} : ${mi} `
+}
+
+setInterval(() =>{
+    let clockOb = document.querySelector(".clock");
+    clockOb.innerHTML=getTime();    
+}, 1000)
+
+</script>
+</html>
