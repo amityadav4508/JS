@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyboard Events</title>
+    <style>
+        .maindiv{ display: flex; justify-content: center; align-items: center;}
+        .output{ width: 400px; background-color: rgb(41, 41, 41); color: wheat; padding: 20px; }
+        .maindiv input{ background-color: black; width: 200px; padding: 5px; color: wheat; font-size: 20px;}
+
+        .flashkey{position: relative;  top: 50%; left: 50%; transform: translate(-50%, -50%); background-color:
+           rgba(204, 44, 44, 0.502); color: wheat; width: 200px; height: 45px; border-radius: 4px; 
+          text-align: center; align-items: center; z-index: 99;}
+    </style>
+</head>
+<body>
+ <div class="maindiv">
+    <div>
+    <input type="text" id="myInput" placeholder="Type something...">
+    <div class="output">
+        <p class="keyPressed">Key pressed:</p>
+        <p class="keyCode">Key code: </p>
+        <p class="charCode">Char codeAt:</p>
+        <p class="eventType">Event type:</p>
+        <div class="keyCount">c</div>
+        <div class="keyHistory">h</div>
+
+
+
+    </div>
+      </div>
+ </div>
+ <script>
+    let keyPressCount = 0;
+    let allKeysPressed = [];
+
+  const flashKey = (key) => {
+  const flash = document.createElement("div");
+  flash.classList.add("flashkey");
+  flash.textContent=key;
+  document.body.appendChild(flash);
+  setTimeout(()=>document.body.removeChild(flash), 300);
+
+ } 
+
+
+ const handleKeyPress = (event) => {
+   const key = event.key
+    document.querySelector(".keyPressed").textContent = `Key pressed: ${event.key}`;
+    document.querySelector(".keyCode").textContent = `Key code: ${event.isTrusted}`;
+    flashKey(key);
+    updateKeyCount();
+    updateKeyHistory(event.key); 
+
+};
+
+
+
+ const updateKeyCount = () => {
+    keyPressCount++;
+    document.querySelector(".keyCount").textContent = `Key count: ${keyPressCount}`;
+    console.log("Keycounts ",Keycounts )
+
+};
+
+const updateKeyHistory = (key) => {
+  allKeysPressed.push(key);
+  document.querySelector(".keyHistory").textContent = `Keys pressed: ${allKeysPressed.join(', ')}`;
+};
+
+
+    var myInput = document.getElementById("myInput");
+    
+    myInput.addEventListener("keydown", handleKeyPress);
+
+
+ </script>
+
+</body>
+</html>
+
+
+
+<input type="text" id="myInput" placeholder="Type here..." />
+
+<div class="keyPressed"></div>
+<div class="keyCode"></div>
+<div class="keyCount"></div>
+<div class="keyHistory"></div>
+

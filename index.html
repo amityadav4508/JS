@@ -21,12 +21,13 @@
 
         let inpH = document.querySelector('#Inp');
 
-        
             
 
         // applying style on object
-        const inpHclick = () =>{
+        const inpHclick = (e) => {
                inpH.style.border='2px solid red';
+               console.log("event:", e);
+
         }
         const leave = () =>{
                inpH.style.background='  ';
@@ -51,11 +52,12 @@
                 document.body.style.color="white";
 
         }
-        console.log(inpHclick);
       
-        for (let e of mainOb ){
-            console.log(e);
-        }
+     
+
+
+
+                inpH.addEventListener("click", inpHclick)
 
     </script>
 
