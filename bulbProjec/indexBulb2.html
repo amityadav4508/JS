@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulb Control</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .bulb-container {
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        #bulb {
+            height: 200px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        #bulb:hover {
+            transform: scale(1.05);
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+
+        .controls button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        .controls button:hover {
+            background-color: #2980b9;
+        }
+
+        #toggleBtn.active {
+            background-color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Bulb Control Panel</h1>
+
+    <div class="bulb-container">
+        <img id="bulb" src="off.jpg" alt="Bulb Image">
+    </div>
+
+    <div class="controls">
+        <button id="turnOnBtn">Turn On</button>
+        <button id="turnOffBtn">Turn Off</button>
+        <button id="toggleBtn">ON</button>
+    </div>
+
+    <script>
+        const bulb = document.getElementById("bulb");
+        const turnOnBtn = document.getElementById("turnOnBtn");
+        const turnOffBtn = document.getElementById("turnOffBtn");
+        const toggleBtn = document.getElementById("toggleBtn");
+
+        const turnOn = () => {
+            bulb.setAttribute("src", "on.jpg");
+            toggleBtn.textContent = "OFF";
+            toggleBtn.classList.add("active");
+        };
+
+        const turnOff = () => {
+            bulb.setAttribute("src", "off.jpg");
+            toggleBtn.textContent = "ON";
+            toggleBtn.classList.remove("active");
+        };
+
+        const toggleBulb = () => {
+            const isOff = bulb.getAttribute("src").includes("off");
+            if (isOff) {
+                turnOn();
+            } else {
+                turnOff();
+            }
+        };
+
+        // Add Event Listeners
+        turnOnBtn.addEventListener("click", turnOn);
+        turnOffBtn.addEventListener("click", turnOff);
+        toggleBtn.addEventListener("click", toggleBulb);
+        bulb.addEventListener("click", toggleBulb);
+    </script>
+
+</body>
+</html>
