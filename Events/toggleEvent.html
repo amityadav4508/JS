@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Toggle Examples</title>
+      <!-- What it does:
+Adds the class if it doesn't exist.
+Removes the class if it does exist.
+Useful for toggling styles like showing/hiding, active states, etc. -->
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Dark mode */
+    .dark-mode {
+      background-color: #222;
+      color: white;
+    }
+
+    /* Hidden content */
+    .hidden {
+      display: none;
+    }
+
+    /* Like button styles */
+    .like-btn {
+      padding: 10px 20px;
+      background: lightgray;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .like-btn.active {
+      background-color: red;
+      color: white;
+    }
+
+    /* General styling */
+    .section {
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🔘 Dark Mode Toggle -->
+  <div class="section">
+    <h2>Dark Mode Toggle</h2>
+    <button onclick="document.body.classList.toggle('dark-mode')">Toggle Dark Mode</button>
+  </div>
+
+  <!-- 👁️ Show/Hide Details -->
+  <div class="section">
+    <h2>Show/Hide Details</h2>
+    <button onclick="document.getElementById('details').classList.toggle('hidden')">
+      Show/Hide Details
+    </button>
+    <div id="details" class="hidden">
+      <p>This is some hidden information.</p>
+    </div>
+  </div>
+
+  <!-- ❤️ Like Button -->
+  <div class="section">
+    <h2>Like Button Toggle</h2>
+    <button class="like-btn" onclick="this.classList.toggle('active')">
+      👍 Like
+    </button>
+  </div>
+
+</body>
+</html>

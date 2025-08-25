@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DOM Methods Demo</title>
+  <style>
+    .box { border: 1px solid black; padding: 10px; margin: 5px; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <h1>DOM Manipulation Examples</h1>
+
+  <!-- Node Selection Target -->
+  <div id="container" class="box">
+    <p id="first">First</p>
+    <p id="second">Second</p>
+  </div>
+
+  <!-- For content update -->
+  <div id="textBox" class="box"></div>
+
+  <!-- For attribute testing -->
+  <img id="myImg" src="image.jpg" alt="An image">
+
+  <!-- Button for events -->
+  <button id="btn">Click Me</button>
+
+  <script>
+    // 🧱 Node Insertion & Removal
+    const container = document.getElementById('container');
+
+    const newP = document.createElement('p');
+    newP.textContent = "Third";
+    container.appendChild(newP);
+
+    const anotherP = document.createElement('p');
+    anotherP.textContent = "Between First and Second";
+    const second = document.getElementById('second');
+    container.insertBefore(anotherP, second);
+
+    const first = document.getElementById('first');
+    container.removeChild(first);
+
+    const replacement = document.createElement('p');
+    replacement.textContent = "Replacement for Second";
+    container.replaceChild(replacement, second);
+
+    // 🧬 Node Creation
+    const div = document.createElement('div');
+    const text = document.createTextNode('Hello from fragment!');
+    const frag = document.createDocumentFragment();
+    div.appendChild(text);
+    frag.appendChild(div);
+    document.body.appendChild(frag);
+
+    // 🎯 Node Selection
+    console.log(document.getElementById('container'));
+    console.log(document.getElementsByClassName('box'));
+    console.log(document.getElementsByTagName('p'));
+    console.log(document.querySelector('.box'));
+    console.log(document.querySelectorAll('p'));
+
+    // 🎛️ Attributes & Properties
+    const img = document.getElementById('myImg');
+    console.log(img.getAttribute('src'));             // "image.jpg"
+    img.setAttribute('title', 'A cool picture');      // Sets new attribute
+    img.removeAttribute('alt');                       // Removes 'alt'
+    console.log(img.hasAttribute('src'));             // true
+
+    img.classList.add('rounded');
+    img.classList.remove('rounded');
+    img.classList.toggle('hidden');                   // Hides the image
+    console.log(img.classList.contains('hidden'));    // true
+
+    // 📝 Content
+    const textBox = document.getElementById('textBox');
+    textBox.textContent = "Just text content";
+    textBox.innerHTML = "<b>Bold HTML content</b>";
+    textBox.innerText = "Visible Text Only";
+
+    // 📌 Events
+    const btn = document.getElementById('btn');
+    function handleClick() {
+      alert('Button clicked!');
+    }
+    btn.addEventListener('click', handleClick);
+
+    // ✅ Other Methods
+    const original = document.createElement('div');
+    original.textContent = "Clone me!";
+    const clone = original.cloneNode(true);
+    document.body.appendChild(clone);
+
+    console.log(container.contains(replacement));  // true
+    console.log(container.hasChildNodes());        // true
+  </script>
+</body>
+</html>

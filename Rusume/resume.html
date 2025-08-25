@@ -1,127 +1,484 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume Generattor</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="/Rusume/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resume Generator with PDF, Print & Live Preview</title>
+
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- jsPDF and html2canvas libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    h1,
+    h4 {
+      font-weight: bold;
+    }
+
+    .form-section {
+      background-color: white;
+      border-radius: 8px;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      margin-bottom: 30px;
+    }
+
+    #cv-template {
+      display: none;
+      background-color: white;
+      border-radius: 8px;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-top: 30px;
+    }
+
+    .cv-header {
+      border-bottom: 2px solid #dee2e6;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .cv-name {
+      font-size: 1.75rem;
+      font-weight: 600;
+    }
+
+    .cv-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #007bff;
+    }
+
+    .cv-section {
+      margin-top: 20px;
+    }
+
+    .btn-primary,
+    .btn-success {
+      border-radius: 25px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    .add-btn {
+      margin-top: 10px;
+    }
+
+    .label-bold {
+      font-weight: 500;
+    }
+  </style>
 </head>
-
 <body>
-    <h1 class="text-center my-2">Resume Generattor</h1>
-    <p class="text-center">By Lear Code With Amit</p>
+  <div class="container my-5">
+    <h1 class="text-center mb-4">Resume Generator</h1>
 
-    <section class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <!-- first col -->
-                <h3>Personal Infomation</h3>
-                <div class="form-group mt-2">
-                    <label for="">Your Name</label>
-                    <input id="nameField" class="form-control" type="text" placeholder="Enter here">
-                </div>
-                <div class="form-group mt-2">
-                    <label for="">Your Contact</label>
-                    <input id="contactField" class="form-control" type="text" placeholder="Enter here">
-                </div>
-                <div class="form-group mt-2">
-                    <label for="">Your Address</label>
-                    <input id="addressField" class="form-control" type="text" placeholder="Enter here">
-                </div>
+    <!-- Resume Form -->
+    <div class="form-section">
+      <div class="row">
+        <!-- Left Column -->
+        <div class="col-md-6">
+          <h4>Personal Information</h4>
+          <div class="mb-3">
+            <label class="form-label">Full Name <span class="text-danger">*</span></label>
+            <input
+              id="nameField"
+              type="text"
+              class="form-control"
+              placeholder="e.g. John Doe"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Contact <span class="text-danger">*</span></label>
+            <input
+              id="contactField"
+              type="text"
+              class="form-control"
+              placeholder="e.g. +1234567890"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Address <span class="text-danger">*</span></label>
+            <input
+              id="addressField"
+              type="text"
+              class="form-control"
+              placeholder="e.g. New York, USA"
+            />
+          </div>
 
-                <div class="form-group mt-2">
-                    <label for="">Your Name</label>
-                    <input id="nameField" class="form-control" type="text" placeholder="Enter here">
-                </div>
+          <div class="mb-3">
+            <label class="form-label">Upload Profile Picture</label>
+            <input
+              id="profilePicInput"
+              type="file"
+              accept="image/*"
+              class="form-control"
+            />
+          </div>
 
-                <p class="text-secondary py-3">Important links</p>
-
-                <div class="form-group mt-2">
-                    <label for="fbField">Facebook</label>
-                    <input id="fbField" class="form-control" type="text" placeholder="Enter here">
-                </div>
-                <div class="form-group mt-2">
-                    <label for="instaField">Instagram</label>
-                    <input id="instaField" class="form-control" type="text" placeholder="Enter here">
-                </div>
-
-                <div class="form-group mt-2">
-                    <label for="linkedinField">Linkdin</label>
-                    <input id="linkedinField" class="form-control" type="text" placeholder="Enter here">
-                </div>
-
-            </div>
-            <div class="col-md-6">
-                <!-- second col -->
-                <h3>Professional Infomation</h3>
-
-                <div class="form-group mt-2">
-                    <label for="ObjectiveField">Objective</label>
-                    <textarea id="ObjectiveField" class="form-control" rows="5"
-                        placeholder="Enter here"></textarea>
-                </div>
-
-                <div class="form-group mt-2" id="we">
-                    <label for="workField">Work Experiance</label>
-                    <textarea id="workField weField" class="form-control"
-                     rows="3"
-                     placeholder="Enter here"></textarea>
-
-                        <!-- new text area  -->
-
-                    <div class="container text-center" id="weAddButton">
-                        <button onclick="addNewWorkEField()" class="btn btn-primary btn-sm mt-2">Add</button>
-                    </div>
-                </div>                 
-
-                <div class="form-group mt-2" id="aq">
-                    <label for="workField">Acadimic Qualification</label>
-                    <textarea id="workField" class="form-control" rows="3" 
-                        placeholder="Enter here"></textarea>
-                                        <!-- new textarea  -->
-
-                    <div class="container text-center" id="qaAddButton">
-                        <button onclick="AddNewAqField()" class="btn btn-primary btn-sm mt-2">Add</button>
-                    </div>
-                </div>
-            </div>
+          <h5 class="mt-4">Social Links</h5>
+          <div class="mb-3">
+            <label class="form-label">Facebook</label>
+            <input
+              id="fbField"
+              type="text"
+              class="form-control"
+              placeholder="Facebook profile link"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Instagram</label>
+            <input
+              id="instaField"
+              type="text"
+              class="form-control"
+              placeholder="Instagram profile link"
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">LinkedIn</label>
+            <input
+              id="linkedinField"
+              type="text"
+              class="form-control"
+              placeholder="LinkedIn profile link"
+            />
+          </div>
         </div>
-        <div class="container">
-            <button class="btn btn-primary btn-lg text-3 mt-3">Generate CV</button>
+
+        <!-- Right Column -->
+        <div class="col-md-6">
+          <h4>Professional Information</h4>
+          <div class="mb-3">
+            <label class="form-label">Career Objective <span class="text-danger">*</span></label>
+            <textarea
+              id="objectiveField"
+              rows="4"
+              class="form-control"
+              placeholder="Brief career summary"
+            ></textarea>
+          </div>
+
+          <!-- Work Experience -->
+          <div class="mb-3" id="we">
+            <label class="form-label">Work Experience <span class="text-danger">*</span></label>
+            <textarea
+              class="form-control weField"
+              rows="3"
+              placeholder="Enter work experience"
+            ></textarea>
+            <button
+              type="button"
+              class="btn btn-outline-primary btn-sm add-btn"
+              onclick="addNewWorkEField()"
+            >
+              + Add More
+            </button>
+          </div>
+
+          <!-- Academic Qualification -->
+          <div class="mb-3" id="aq">
+            <label class="form-label">Academic Qualification <span class="text-danger">*</span></label>
+            <textarea
+              class="form-control aqField"
+              rows="3"
+              placeholder="Enter academic qualification"
+            ></textarea>
+            <button
+              type="button"
+              class="btn btn-outline-primary btn-sm add-btn"
+              onclick="addNewAqField()"
+            >
+              + Add More
+            </button>
+          </div>
         </div>
-    </section>
+      </div>
 
+      <div class="text-center mt-4">
+        <button id="generateBtn" class="btn btn-success btn-lg px-5">
+          Generate CV
+        </button>
+      </div>
 
-<section>
-    
-</section>
+      <div class="text-center mt-3" style="display: flex; justify-content:center; gap: 15px;">
+        <button id="printBtn" class="btn btn-outline-secondary">Print CV</button>
+        <button id="pdfBtn" class="btn btn-outline-secondary">Download PDF</button>
+      </div>
+    </div>
 
+    <!-- CV Preview Section -->
+    <div id="cv-template">
+      <div class="cv-header">
+        <img
+          id="profilePicPreview"
+          src=""
+          alt="Profile Picture"
+          class="cv-pic"
+          style="display:none"
+        />
+        <div>
+          <div class="cv-name" id="nameT"></div>
+          <div><span class="label-bold">Contact:</span> <span id="contactT"></span></div>
+          <div><span class="label-bold">Address:</span> <span id="addressT"></span></div>
+        </div>
+      </div>
 
+      <div class="cv-section">
+        <h5>Objective</h5>
+        <p id="objectiveT"></p>
+      </div>
 
+      <div class="cv-section">
+        <h5>Work Experience</h5>
+        <ul id="weT"></ul>
+      </div>
 
+      <div class="cv-section">
+        <h5>Academic Qualifications</h5>
+        <ul id="aqT"></ul>
+      </div>
 
+      <div class="cv-section">
+        <h5>Social Profiles</h5>
+        <p>
+          <span class="label-bold">Facebook:</span>
+          <span id="fbT"></span>
+        </p>
+        <p>
+          <span class="label-bold">Instagram:</span>
+          <span id="instaT"></span>
+        </p>
+        <p>
+          <span class="label-bold">LinkedIn:</span>
+          <span id="linkedinT"></span>
+        </p>
+      </div>
+    </div>
+  </div>
 
+  <script>
+    // Functions to add new textarea fields
+    function addNewWorkEField() {
+      const newNode = document.createElement("textarea");
+      newNode.classList.add("form-control", "weField", "mt-2");
+      newNode.setAttribute("rows", 3);
+      newNode.setAttribute("placeholder", "Enter work experience");
+      const weDiv = document.getElementById("we");
+      weDiv.insertBefore(newNode, weDiv.querySelector(".add-btn"));
+      newNode.addEventListener("input", livePreview);
+    }
 
+    function addNewAqField() {
+      const newNode = document.createElement("textarea");
+      newNode.classList.add("form-control", "aqField", "mt-2");
+      newNode.setAttribute("rows", 3);
+      newNode.setAttribute("placeholder", "Enter academic qualification");
+      const aqDiv = document.getElementById("aq");
+      aqDiv.insertBefore(newNode, aqDiv.querySelector(".add-btn"));
+      newNode.addEventListener("input", livePreview);
+    }
 
+    document.addEventListener("DOMContentLoaded", () => {
+      const generateBtn = document.getElementById("generateBtn");
+      const printBtn = document.getElementById("printBtn");
+      const pdfBtn = document.getElementById("pdfBtn");
+      const cvTemplate = document.getElementById("cv-template");
+      const profilePicInput = document.getElementById("profilePicInput");
+      const profilePicPreview = document.getElementById("profilePicPreview");
 
+      // Generate CV button handler
+      generateBtn.addEventListener("click", () => {
+        if (!validateForm()) return;
 
+        updateCV();
+        cvTemplate.style.display = "block";
+        window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+      });
 
+      // Print CV button handler
+      printBtn.addEventListener("click", () => {
+        const printWindow = window.open("", "", "width=800,height=600");
+        printWindow.document.write(`
+       
+          <div>
+            <title>Print CV</title>
+            <style>
+              body { font-family: Arial, sans-serif; margin: 20px; }
+              .cv-header { border-bottom: 2px solid #dee2e6; margin-bottom: 20px; padding-bottom: 10px; display: flex; align-items: center; gap: 20px; }
+              .cv-name { font-size: 1.75rem; font-weight: 600; }
+              .cv-pic { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 2px solid #007bff; }
+              .cv-section { margin-top: 20px; }
+              ul { padding-left: 20px; }
+              .label-bold { font-weight: 500; }
+            </style>
+          </div>
+          <P>${cvTemplate.innerHTML}</P>
+        
+        `);
+        printWindow.document.close();
+        printWindow.focus();
+        printWindow.print();
+        printWindow.close();
+      });
 
+      // PDF Download button handler
+      pdfBtn.addEventListener("click", () => {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF("p", "pt", "a4");
+        const pdfWidth = doc.internal.pageSize.getWidth();
+        const pdfHeight = doc.internal.pageSize.getHeight();
 
+        html2canvas(cvTemplate, { scale: 2 }).then((canvas) => {
+          const imgData = canvas.toDataURL("image/png");
+          const imgProps = doc.getImageProperties(imgData);
+          const imgWidth = pdfWidth;
+          const imgHeight = (imgProps.height * imgWidth) / imgProps.width;
+          let position = 0;
 
+          if (imgHeight < pdfHeight) {
+            doc.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+          } else {
+            let heightLeft = imgHeight;
+            while (heightLeft > 0) {
+              doc.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+              heightLeft -= pdfHeight;
+              position -= pdfHeight;
+              if (heightLeft > 0) doc.addPage();
+            }
+          }
 
+          doc.save("resume.pdf");
+        });
+      });
 
-    <!-- jquery  -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <!-- bootstrap js  -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-    <script src="/Rusume//script.js"></script>
+      // Profile picture preview
+      profilePicInput.addEventListener("change", () => {
+        const file = profilePicInput.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            profilePicPreview.src = e.target.result;
+            profilePicPreview.style.display = "block";
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
+      // Validate required fields
+      function validateForm() {
+        const name = document.getElementById("nameField").value.trim();
+        const contact = document.getElementById("contactField").value.trim();
+        const address = document.getElementById("addressField").value.trim();
+        const objective = document.getElementById("objectiveField").value.trim();
+
+        if (!name || !contact || !address || !objective) {
+          alert("Please fill out all required fields marked with *.");
+          return false;
+        }
+
+        const weFields = document.querySelectorAll(".weField");
+        if (![...weFields].some((field) => field.value.trim() !== "")) {
+          alert("Please enter at least one Work Experience.");
+          return false;
+        }
+
+        const aqFields = document.querySelectorAll(".aqField");
+        if (![...aqFields].some((field) => field.value.trim() !== "")) {
+          alert("Please enter at least one Academic Qualification.");
+          return false;
+        }
+
+        return true;
+      }
+
+      // Update CV preview with form data
+      function updateCV() {
+        document.getElementById("nameT").textContent = document.getElementById("nameField").value.trim();
+        document.getElementById("contactT").textContent = document.getElementById("contactField").value.trim();
+        document.getElementById("addressT").textContent = document.getElementById("addressField").value.trim();
+        document.getElementById("objectiveT").textContent = document.getElementById("objectiveField").value.trim();
+
+        // Work Experience
+        const weT = document.getElementById("weT");
+        weT.innerHTML = "";
+        const weFields = document.querySelectorAll(".weField");
+        weFields.forEach((field) => {
+          if (field.value.trim()) {
+            const li = document.createElement("li");
+            li.textContent = field.value.trim();
+            weT.appendChild(li);
+          }
+        });
+
+        // Academic Qualification
+        const aqT = document.getElementById("aqT");
+        aqT.innerHTML = "";
+        const aqFields = document.querySelectorAll(".aqField");
+        aqFields.forEach((field) => {
+          if (field.value.trim()) {
+            const li = document.createElement("li");
+            li.textContent = field.value.trim();
+            aqT.appendChild(li);
+          }
+        });
+
+        // Social links clickable if valid
+        const fb = document.getElementById("fbField").value.trim();
+        const insta = document.getElementById("instaField").value.trim();
+        const linkedin = document.getElementById("linkedinField").value.trim();
+
+        document.getElementById("fbT").innerHTML = isValidURL(fb)
+          ? `<a href="${fb}" target="_blank" rel="noopener noreferrer">${fb}</a>`
+          : "N/A";
+        document.getElementById("instaT").innerHTML = isValidURL(insta)
+          ? `<a href="${insta}" target="_blank" rel="noopener noreferrer">${insta}</a>`
+          : "N/A";
+        document.getElementById("linkedinT").innerHTML = isValidURL(linkedin)
+          ? `<a href="${linkedin}" target="_blank" rel="noopener noreferrer">${linkedin}</a>`
+          : "N/A";
+      }
+
+      // URL validation helper
+      function isValidURL(str) {
+        try {
+          const url = new URL(str);
+          return url.protocol === "http:" || url.protocol === "https:";
+        } catch {
+          return false;
+        }
+      }
+
+      // Live preview on input
+      function livePreview() {
+        if (cvTemplate.style.display === "block") {
+          updateCV();
+        }
+      }
+
+      // Attach live preview to all input and textarea fields
+      document.querySelectorAll("input, textarea").forEach((input) => {
+        input.addEventListener("input", livePreview);
+      });
+    });
+  </script>
 </body>
-
 </html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DocumentFragment vs Direct DOM Append</title>
+  <!-- 
+document.createDocumentFragment() is a temporary container that:
+ “Prepare everything backstage, then put it all on stage in one go.”
+
+-Is created in memory, not immediately shown on the web page (DOM).
+-Lets you prepare HTML elements in advance.
+-Allows you to add all those elements to the page at once.
+-Why Use It?
+-To prevent the page from getting slow.
+-To add many elements at once.
+-For smoother and faster updates to the page.
+  -->
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 30px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 10px 10px 20px 0;
+      cursor: pointer;
+    }
+
+    ul {
+      padding-left: 20px;
+      max-height: 250px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      width: 300px;
+      margin-bottom: 40px;
+    }
+
+    li {
+      margin: 4px 0;
+    }
+
+    .container {
+      display: flex;
+      gap: 40px;
+    }
+
+    .section {
+      flex: 1;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>DocumentFragment vs Direct DOM Append</h1>
+  <div class="container">
+    <!-- With DocumentFragment -->
+    <div class="section">
+      <h2>With DocumentFragment</h2>
+      <button id="btn-fragment">Generate 100 Items</button>
+      <ul id="list-fragment"></ul>
+    </div>
+
+    <!-- Without DocumentFragment -->
+    <div class="section">
+      <h2>Without DocumentFragment</h2>
+      <button id="btn-direct">Generate 100 Items</button>
+      <ul id="list-direct"></ul>
+    </div>
+  </div>
+
+  <script>
+    const btnFragment = document.getElementById('btn-fragment');
+    const listFragment = document.getElementById('list-fragment');
+
+    const btnDirect = document.getElementById('btn-direct');
+    const listDirect = document.getElementById('list-direct');
+
+    btnFragment.addEventListener('click', () => {
+      listFragment.innerHTML = '';
+      const fragment = document.createDocumentFragment();
+
+      for (let i = 1; i <= 100; i++) {
+        const li = document.createElement('li');
+        li.textContent = 'Item #' + i;
+        fragment.appendChild(li);
+      }
+
+      listFragment.appendChild(fragment);
+    });
+
+    btnDirect.addEventListener('click', () => {
+      listDirect.innerHTML = '';
+
+      for (let i = 1; i <= 100; i++) {
+        const li = document.createElement('li');
+        li.textContent = 'Item #' + i;
+        listDirect.appendChild(li);
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Event Methods & Properties Demo</title>
+  <style>
+    #parent {
+      border: 2px solid #333;
+      padding: 20px;
+      margin: 20px;
+    }
+    #child {
+      border: 2px dashed #666;
+      padding: 15px;
+      margin: 10px;
+      cursor: pointer;
+    }
+    #myBtn {
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Button for addEventListener examples -->
+  <button id="myBtn">Click Me</button>
+
+  <!-- Parent and Child divs for stopPropagation example -->
+  <div id="parent">
+    Parent Div
+    <div id="child">Child Div (Click me)</div>
+  </div>
+
+  <!-- Simple form for preventDefault example -->
+  <form>
+    <input type="text" placeholder="Type something..." required />
+    <button type="submit">Submit Form</button>
+  </form>
+
+  <script>
+    // Paste your entire JavaScript code block here
+    
+    // 1. addEventListener() - Adds an event handler to an element
+    const btn = document.getElementById('myBtn');
+    btn.addEventListener('click', function() {
+      // This runs when the button is clicked
+      alert("Button clicked!");
+    });
+
+    // 2. removeEventListener() - Removes a previously added event handler
+    function greet() {
+      alert('Hi!');
+    }
+    btn.addEventListener('click', greet);
+    // To remove the event later:
+    btn.removeEventListener('click', greet);
+
+    // 3. preventDefault() - Stops the default action (like form submit or link open)
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();  // Stops form from submitting/reloading page
+      alert('Form submission stopped!');
+    });
+
+    // 4. stopPropagation() - Stops the event from bubbling up to parent elements
+    const parent = document.getElementById('parent');
+    const child = document.getElementById('child');
+
+    child.addEventListener('click', function(e) {
+      e.stopPropagation(); // Event will not bubble to parent
+      alert('Child clicked!');
+    });
+
+    parent.addEventListener('click', function() {
+      alert('Parent clicked!');
+    });
+
+    // 5. stopImmediatePropagation() - Stops other listeners on the same element from running
+    btn.addEventListener('click', function(e) {
+      e.stopImmediatePropagation();
+      alert('Only this event runs');
+    });
+    btn.addEventListener('click', function() {
+      alert('This will NOT run because of stopImmediatePropagation');
+    });
+
+    // 6. event.target - The element that actually triggered the event
+    document.addEventListener('click', function(e) {
+      console.log('Clicked element:', e.target);
+    });
+
+    // 7. event.currentTarget - The element the event listener is attached to
+    btn.addEventListener('click', function(e) {
+      console.log('Event target:', e.target);           // Exact clicked element
+      console.log('Event currentTarget:', e.currentTarget); // Element with listener
+    });
+
+    // 8. event.type - The type of the event (e.g. 'click', 'keydown')
+    btn.addEventListener('click', function(e) {
+      console.log('Event type:', e.type);
+    });
+
+    // 9. event.bubbles - Checks if the event bubbles up through DOM (true/false)
+    btn.addEventListener('click', function(e) {
+      console.log('Does event bubble?', e.bubbles);
+    });
+
+    // 10. event.cancelable - Checks if event’s default action can be prevented
+    btn.addEventListener('click', function(e) {
+      console.log('Can event be canceled?', e.cancelable);
+    });
+  </script>
+</body>
+</html>
