@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Key Event Tracker</title>
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .output {
+      text-align: start;
+      justify-content: center;
+      align-items: center;
+      background-color: rgb(100, 100, 100);
+      width: 400px;
+      border-radius: 10px;
+      padding: 10px;
+      color: white;
+    }
+
+    .main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 50px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      width: 250px;
+      border-radius: 5px;
+      border: none;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 8px 16px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #2196f3;
+      color: white;
+      cursor: pointer;
+    }
+
+    .flash {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 50px;
+      color: white;
+      background-color: black;
+      padding: 20px;
+      border-radius: 10px;
+      z-index: 1000;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+    .flash2 {
+      position: fixed;
+      top: 30%;
+      left: 20%;
+      transform: translate(-50%, -50%);
+      font-size: 50px;
+      color: rgb(252, 9, 9);
+      background-color: rgb(12, 52, 233);
+      padding: 20px;
+      border-radius: 10px;
+      z-index: 1000;
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .keyFreq {
+      white-space: pre-wrap;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="main">
+    <input type="text" id="myInput" placeholder="Type something..." />
+    <div class="output">
+      <p class="keyPressed">Key pressed:</p>
+      <p class="keyCode">Key code:</p>
+      <p class="charCode">Char code:</p>
+      <p class="eventType">Event type:</p>
+      <p class="keyPressedCount">Key press count:</p>
+      <p class="storeData">Stored keys:</p>
+      <div class="keyFreq">Key frequency:</div>
+    </div>
+    <button id="clearBtn">Clear</button>
+    <button id="downloadBtn">Download Keys</button>
+  </div>
+
+  <script>
+    let keyPressedCountv = 0;
+    const storeKeyPressData = [];
+    const keyFrequency = {};
+
+    const flashKey2 = (keyCode) =>{
+      const flash2 = document.createElement("span")
+      flash2.textContent = keyCode;
+      flash2.classList.add("flash2")
+      document.body.appendChild(flash2)
+      setTimeout(() => document.body.removeChild(flash2), 500);
+
+  
+    }
+
+    const flashKey = (key) => {
+      const flash = document.createElement("div");
+      flash.textContent = key;
+      flash.classList.add("flash");
+      document.body.appendChild(flash);
+      setTimeout(() => document.body.removeChild(flash), 500);
+    };
+
+    const handleKeyPress = (e) => {
+      const key = e.key;
+      const keyCode = e.keyCode;
+      document.querySelector(".keyPressed").textContent = `Key pressed: ${key}`;
+      document.querySelector(".keyCode").textContent = `Key code: ${keyCode}`;
+      document.querySelector(".charCode").textContent = `Char code: ${e.charCode || "N/A"}`;
+      document.querySelector(".eventType").textContent = `Event type: ${e.type}`;
+
+      flashKey(key);
+      flashKey2(keyCode);
+
+      updateKeyPressedCount();
+      storeKeyPressData.push(key);
+      updateStoredKeys();
+
+      keyFrequency[key] = (keyFrequency[key] || 0) + 1;
+      updateKeyFrequency();
+    };
+
+    const updateKeyPressedCount = () => {
+      keyPressedCountv++;
+      document.querySelector(".keyPressedCount").textContent = `Key press count: ${keyPressedCountv}`;
+    };
+
+    const updateStoredKeys = () => {
+      document.querySelector(".storeData").textContent = `Stored keys: ${storeKeyPressData.join(", ")}`;
+    };
+
+    const updateKeyFrequency = () => {
+      let output = "Key frequency:\n";
+      for (let key in keyFrequency) {
+        output += `${key}: ${keyFrequency[key]}\n`;
+      }
+      document.querySelector(".keyFreq").textContent = output;
+    };
+
+    const clearData = () => {
+      keyPressedCountv = 0;
+      storeKeyPressData.length = 0;
+      for (let key in keyFrequency) delete keyFrequency[key];
+      document.querySelector(".keyPressedCount").textContent = `Key press count: 0`;
+      document.querySelector(".storeData").textContent = `Stored keys: `;
+      document.querySelector(".keyFreq").textContent = `Key frequency:`;
+      localStorage.removeItem("storedKeys");
+    };
+
+    const downloadData = () => {
+      const blob = new Blob([storeKeyPressData.join(", ")], { type: "text/plain" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "keylog.txt";
+      link.click();
+    };
+
+    const myInput = document.querySelector("#myInput");
+    myInput.addEventListener("keydown", handleKeyPress);
+    myInput.addEventListener("keyup", handleKeyPress);
+
+
+    document.querySelector("#clearBtn").addEventListener("click", clearData);
+    document.querySelector("#downloadBtn").addEventListener("click", downloadData);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    // Persist stored keys in localStorage
+    window.addEventListener("beforeunload", () => {
+      localStorage.setItem("storedKeys", JSON.stringify(storeKeyPressData));
+    });
+
+    window.addEventListener("load", () => {
+      const saved = JSON.parse(localStorage.getItem("storedKeys") || "[]");
+      storeKeyPressData.push(...saved);
+      updateStoredKeys();
+    });
+  </script>
+</body>
+</html>

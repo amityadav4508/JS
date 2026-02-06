@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Advanced Input Event Playground</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f8f9fa;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 10px;
+    }
+    .output p {
+      margin: 5px 0;
+    }
+    .inputType {
+      font-weight: bold;
+    }
+    .charCount {
+      margin-top: 10px;
+    }
+    table {
+      margin-top: 20px;
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 600px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      font-size: 14px;
+    }
+    th {
+      background-color: #eee;
+    }
+  </style>
+</head>
+<body>
+  <section>
+    <!-- Input field with max length -->
+    <input type="text" id="myInput" name="username" placeholder="Type something..." autocomplete="off" maxlength="30" />
+
+    <!-- Live output section -->
+    <div class="output">
+      <p class="inputValue">Input Value:</p>
+      <p class="inputName">Input Name:</p>
+      <p class="inputType">Input Type:</p>
+      <p class="eventType">Event Type:</p>
+      <p class="cursorPos">Cursor Position:</p>
+      <p class="charCount">Characters: 0</p>
+      <p class="liveUpdate" aria-live="polite" style="color: green;"></p>
+    </div>
+
+    <!-- Live event log table -->
+    <table class="logTable">
+      <thead>
+        <tr><th>Event</th><th>InputType</th><th>Value</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <script>
+    const inputElem = document.getElementById("myInput");
+
+    // Debounce utility: prevent function from firing too often
+    function debounce(fn, delay = 300) {
+      let timer;
+      return (...args) => {
+        clearTimeout(timer);
+        timer = setTimeout(() => fn(...args), delay);
+      };
+    }
+
+    // Handle all kinds of input events
+    const handleInput = (e) => {
+      const value = e.target.value;
+      const name = e.target.name;
+      const type = e.inputType ?? "N/A";
+      const eventType = e.type;
+      const cursorStart = e.target.selectionStart;
+      const cursorEnd = e.target.selectionEnd;
+
+      // Log to console for debugging
+     console.log("Event:", eventType, "| InputType:", type, "| Value:", value);
+
+      // Update display
+      document.querySelector(".inputValue").textContent = `Input Value: ${value}`;
+      document.querySelector(".inputName").textContent = `Input Name: ${name}`;
+      document.querySelector(".inputType").textContent = `Input Type: ${type}`;
+      document.querySelector(".eventType").textContent = `Event Type: ${eventType}`;
+      document.querySelector(".cursorPos").textContent = `Cursor Position: ${cursorStart} to ${cursorEnd}`;
+      document.querySelector(".charCount").textContent = `Characters: ${value.length}`;
+      document.querySelector(".liveUpdate").textContent = `You typed: ${value}`;
+
+      // Color code inputType feedback
+      const inputTypeEl = document.querySelector(".inputType");
+      if (type.startsWith("insert")) {
+        inputTypeEl.style.color = "green";
+      } else if (type.startsWith("delete")) {
+        inputTypeEl.style.color = "red";
+      } else if (type === "historyUndo" || type === "historyRedo") {
+        inputTypeEl.style.color = "orange";
+      } else {
+        inputTypeEl.style.color = "black";
+      }
+
+      // Warn on max length
+    if (value.length >= inputElem.maxLength && !document.querySelector(".max-warning")) {
+  const divlen = document.createElement("div");
+  divlen.className = "max-warning"; // Useful to prevent duplicates
+  divlen.style.backgroundColor = "red";
+  divlen.style.color = "white";
+  divlen.style.padding = "10px";
+  divlen.style.marginTop = "10px";
+  divlen.textContent = " Max length reached!";
+
+  const outputContainer = document.querySelector(".output");
+  //  document.body.appendChild(divlen);
+  //outputContainer.insertBefore(divlen, outputContainer.firstChild);
+
+  const nthChild = outputContainer.children[1];
+  if (nthChild) {
+    outputContainer.insertBefore(divlen, nthChild);
+  } else {
+    outputContainer.appendChild(divlen); // fallback if not enough children
+  }
+  alert("⚠️ Max length reached!");
+}
+
+
+      // Add to log table
+      const logRow = document.querySelector(".logTable tbody");
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${eventType}</td>
+        <td>${type}</td>
+        <td>${value}</td>
+      `;
+      logRow.appendChild(row);
+    };
+
+    inputElem.addEventListener("paste", (e) => {
+      const pastedText = (e.clipboardData || window.clipboardData).getData("text");
+      console.log("Pasted content:", pastedText);
+    });
+    // Show key presses
+    inputElem.addEventListener("keydown", (e) => {
+      console.log(" Key down:", e.key);
+    });
+
+    inputElem.addEventListener("keyup", (e) => {
+      //console.log("🔼 Key up:", e.key);
+    });
+
+    // Attach all relevant event listeners
+    inputElem.addEventListener("input", debounce(handleInput, 2000));      // fires on every input
+   inputElem.addEventListener("change", handleInput);                    // fires on blur/enter
+    inputElem.addEventListener("beforeinput", handleInput);              // before input happens
+  </script>
+</body>
+</html>
