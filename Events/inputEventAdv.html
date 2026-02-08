@@ -5,41 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Advanced Input Event Playground</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-      background: #F8F9FA;
-    }
-    input {
-      padding: 10px;
-      font-size: 16px;
-      width: 100%;
-      max-width: 400px;
-      margin-bottom: 10px;
-    }
-    .output p {
-      margin: 5px 0;
-    }
-    .inputType {
-      font-weight: bold;
-    }
-    .charCount {
-      margin-top: 10px;
-    }
-    table {
-      margin-top: 20px;
-      border-collapse: collapse;
-      width: 100%;
-      max-width: 600px;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 8px;
-      font-size: 14px;
-    }
-    th {
-      background-color: #eee;
-    }
+ body { font-family: Arial, sans-serif; padding: 20px; background: #F8F9FA; } 
+ input { padding: 10px; font-size: 16px; width: 100%; max-width: 400px; margin-bottom: 10px; } .output p { margin: 5px 0; } 
+.inputType { font-weight: bold; } 
+.charCount { margin-top: 10px; } 
+ table { margin-top: 20px; border-collapse: collapse; width: 100%; max-width: 600px; } th, td { border: 1px solid #ccc; padding: 8px; font-size: 14px; } th { background-color: #eee; }
+
   </style>
 </head>
 <body>
@@ -134,12 +105,12 @@
       logRow.appendChild(row);
     };
     inputElem.addEventListener("paste", (e) => {
-      const pastedText = (e.clipboardData || window.clipboardData).getData("text");
+      const pastedText = (e.clipboardData || window.clipboardData).getData("number");
       console.log("Pasted content:", pastedText);
     });
     // Show key presses
     inputElem.addEventListener("keydown", (e) => {
-      console.log(" Key down:", e.key);
+     // console.log(" Key down:", e.key);
     });
     inputElem.addEventListener("keyup", (e) => {
       //console.log(":arrow_up_small: Key up:", e.key);

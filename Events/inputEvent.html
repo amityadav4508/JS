@@ -5,18 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Input Events</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-    }
-    input {
-      padding: 10px;
-      font-size: 16px;
-      width: 300px;
-    }
-    .output p {
-      margin: 5px 0;
-    }
+    body {font-family: Arial, sans-serif; padding: 20px;}
+    input {padding: 10px; font-size: 16px; width: 300px;}
+   .output p { margin: 5px 0;}
   </style>
 </head>
 <body>
@@ -31,7 +22,8 @@
   </section>
   <script>
     const handleInput = (e) => {
-      console.log("Event object:", e);
+      var inputType = e.inputType
+      console.log('Input type:', inputType)
       console.log("Input value:", e.target.value);
       console.log("Input name:", e.target.name);
       console.log("Input type:", e.inputType); // Can be undefined in some browsers
@@ -43,7 +35,10 @@
     };
     const inputElem = document.getElementById("myInput");
     // inputElem.addEventListener("input", handleInput);
-    inputElem.addEventListener("change", handleInput);
+    inputElem.addEventListener("input", handleInput);
+    inputElem.addEventListener("change", function(e){
+    });
+
   </script>
 </body>
 </html>

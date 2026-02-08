@@ -27,7 +27,7 @@
   <button id="btn">Click Me</button>
 
   <script>
-    // 🧱 Node Insertion & Removal
+    //  Node Insertion & Removal
     const container = document.getElementById('container');
 
     const newP = document.createElement('p');
@@ -46,7 +46,7 @@
     replacement.textContent = "Replacement for Second";
     container.replaceChild(replacement, second);
 
-    // 🧬 Node Creation
+    //  Node Creation
     const div = document.createElement('div');
     const text = document.createTextNode('Hello from fragment!');
     const frag = document.createDocumentFragment();
@@ -54,14 +54,14 @@
     frag.appendChild(div);
     document.body.appendChild(frag);
 
-    // 🎯 Node Selection
+    //  Node Selection
     console.log(document.getElementById('container'));
     console.log(document.getElementsByClassName('box'));
     console.log(document.getElementsByTagName('p'));
     console.log(document.querySelector('.box'));
     console.log(document.querySelectorAll('p'));
 
-    // 🎛️ Attributes & Properties
+    //  Attributes & Properties
     const img = document.getElementById('myImg');
     console.log(img.getAttribute('src'));             // "image.jpg"
     img.setAttribute('title', 'A cool picture');      // Sets new attribute
@@ -73,20 +73,20 @@
     img.classList.toggle('hidden');                   // Hides the image
     console.log(img.classList.contains('hidden'));    // true
 
-    // 📝 Content
+    //  Content
     const textBox = document.getElementById('textBox');
     textBox.textContent = "Just text content";
     textBox.innerHTML = "<b>Bold HTML content</b>";
     textBox.innerText = "Visible Text Only";
 
-    // 📌 Events
+    //  Events
     const btn = document.getElementById('btn');
     function handleClick() {
       alert('Button clicked!');
     }
     btn.addEventListener('click', handleClick);
 
-    // ✅ Other Methods
+    //  Other Methods
     const original = document.createElement('div');
     original.textContent = "Clone me!";
     const clone = original.cloneNode(true);

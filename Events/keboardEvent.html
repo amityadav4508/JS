@@ -8,10 +8,7 @@
         .maindiv{ display: flex; justify-content: center; align-items: center;}
         .output{ width: 400px; background-color: rgb(41, 41, 41); color: wheat; padding: 20px; }
         .maindiv input{ background-color: black; width: 200px; padding: 5px; color: wheat; font-size: 20px;}
-
-        .flashkey{position: relative;  top: 50%; left: 50%; transform: translate(-50%, -50%); background-color:
-           rgba(204, 44, 44, 0.502); color: wheat; width: 200px; height: 45px; border-radius: 4px; 
-          text-align: center; align-items: center; z-index: 99;}
+        .flashkey{position: relative;  top: 50%; left: 50%; transform: translate(-50%, -50%); background-color:z rgba(204, 44, 44, 0.502); color: wheat; width: 200px; height: 45px; border-radius: 4px; text-align: center; align-items: center; z-index: 99;}
     </style>
 </head>
 <body>
@@ -25,12 +22,7 @@
         <p class="eventType">Event type:</p>
         <div class="keyCount">c</div>
         <div class="keyHistory">h</div>
-
-
-
-    </div>
-      </div>
- </div>
+    </div></div></div>
  <script>
     let keyPressCount = 0;
     let allKeysPressed = [];
@@ -56,7 +48,6 @@
 };
 
 
-
  const updateKeyCount = () => {
     keyPressCount++;
     document.querySelector(".keyCount").textContent = `Key count: ${keyPressCount}`;
@@ -69,23 +60,13 @@ const updateKeyHistory = (key) => {
   document.querySelector(".keyHistory").textContent = `Keys pressed: ${allKeysPressed.join(', ')}`;
 };
 
-
     var myInput = document.getElementById("myInput");
     
     myInput.addEventListener("keydown", handleKeyPress);
-
 
  </script>
 
 </body>
 </html>
 
-
-
-<input type="text" id="myInput" placeholder="Type here..." />
-
-<div class="keyPressed"></div>
-<div class="keyCode"></div>
-<div class="keyCount"></div>
-<div class="keyHistory"></div>
 
