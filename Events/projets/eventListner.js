@@ -1,6 +1,6 @@
 // browser mein page per koi bhi harkat kro event raise ho jaayega.
 
-// kuch h screen par ho aur apko reaction dena ho us waqkt apko event handle krne ana chahiye
+// kuch screen par ho aur apko reaction dena ho us waqkt apko event handle krne ana chahiye
 
 // evet mtlab hota hai koi aciton huaa
 
@@ -33,6 +33,7 @@ p.addEventListener("click", function(){
 let inp = document.querySelector("input");
 
 inp.addEventListener("input", function(dets){
+    console.log(dets);
     // console.log("typed")
     // console.log(dets.data)
     if(dets.data !== null){
@@ -54,7 +55,18 @@ sel.addEventListener("change", function(dets){
 })
 
 
+//  find which key is clicked of flash key
+
+let h2 = document.querySelector("h2");
+
+window.addEventListener("keydown", function(dets){
+    h2.textContent = `${dets.key}`
+    console.log(dets.key)
+    if(dets.key === " "){
+        h2.textContent = "SPC"
+    } else{
+        h2.textContent = `${dets.key}`
 
 
-
-
+    }
+})

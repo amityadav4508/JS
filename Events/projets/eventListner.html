@@ -4,7 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+*{margin:0; padding:0; box-sizing:border-box;}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+#main {
+  width: 100%;
+  background-color: rgb(110,110,110);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: red;
+} h2{font-size: 50px; user-select: none;}
+.inputt{display: none;}
+#btn{
+    padding: 8px 15px;
+    background-color: rgb(87, 140, 114);
+    color: white;
+    border-radius: 14px;
+    font-weight: bold;
+    
+} #btn:hover{background-color: rgb(44, 114, 56); transition: ease-in 0.5s;}
+    </style>
 </head>
+
 <body>
 
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste, ipsam!</p>
@@ -14,8 +41,6 @@
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia nihil labore tenetur?</p>
 
     <input type="text">
-
-
 
     <h3 id="device">Select your device-width</h3>
     <select>
@@ -27,7 +52,27 @@
     </select>
 
 
+
+<!-- keys balue print -->
+    <div id="main">
+        <h2>p</h2>
+    </div>
+
+    <!-- custome file upload js  -->
+
+    <div id="main">
+        <div style="margin-top: 200px;" class="input" id="btn">
+            <input type="file" class="inputt">
+            <div id="btn">
+                upload file
+            </div>
+        </div>
+    </div>
+
+
+
     <script src="eventListner.js"></script>
+    <script src="file.js"></script>
     
 </body>
 </html>
