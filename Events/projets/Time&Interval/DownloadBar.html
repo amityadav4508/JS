@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Download Simulation</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+}
+
+.download-container {
+    background: #ffffff;
+    padding: 30px;
+    width: 350px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.download-container h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    background: #4CAF50;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-size: 14px;
+}
+
+button:hover {
+    background: #43a047;
+}
+
+.progress-wrapper {
+    width: 100%;
+    height: 20px;
+    background: #ddd;
+    border-radius: 20px;
+    margin: 20px 0;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #4CAF50, #2ecc71);
+    border-radius: 20px;
+    transition: width 0.3s ease;
+}
+
+#statusText {
+    font-size: 14px;
+    color: #555;
+}
+</style>
+
+</head>
+<body>
+
+<div class="download-container">
+    <h2>File Download</h2>
+
+    <button id="downloadBtn">Start Download</button>
+
+    <div class="progress-wrapper">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <p id="statusText">Waiting to start...</p>
+</div>
+
+<script>
+let count = 0;
+
+
+let progressBar = document.querySelector(".progress-bar");
+let statusText = document.querySelector("#statusText");
+let downloadBtn = document.querySelector("#downloadBtn");
+let sec = 5;
+
+let pr; // interval reference
+
+downloadBtn.addEventListener("click", function () {
+
+    // prevent multiple clicks
+    if (pr) return;
+
+    pr = setInterval(function () {
+        if (count < 100) {
+            count++;
+            progressBar.style.width = `${count}%`;
+            statusText.textContent = `${count}%`;
+        } else {
+            clearInterval(pr);
+            statusText.textContent = "Download Complete";
+        }
+    }, (sec*1000)/100);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
