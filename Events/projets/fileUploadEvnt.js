@@ -13,6 +13,5 @@ fileInp.addEventListener("change", function(dets){
         btn.textContent = file.name
     }
     
-    
 })
 
