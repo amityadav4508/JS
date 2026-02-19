@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Document</title>
+</head><body>
+    <!--  Local sotrage me array vgrh stire nhi krta isliye unhe string bna ke store krte h  -->
+
+<!-- 
+
+Local Storage
+Store kase kre setItem
+data fetch kasie kare - getItem
+remove kaise kre - removeItem
+update kasie kre - 
+
+-->
+
+
+<script>
+
+// localStorage.setItem("name", "Harsh");
+// localStorage.setItem("name", "Harshita"); update local storage 
+
+
+localStorage.setItem("Friends", JSON.stringify(["Amit", "Harsh", "Gaurav"]));
+
+let fr = JSON.parse(localStorage.getItem("Friends"));
+console.log("amit:", fr)
+
+
+// localStorage.clear();
+
+
+
+</script>
+
+
+
+    
+</body>
+</html>
