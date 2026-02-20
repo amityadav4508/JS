@@ -50,7 +50,7 @@ let sel = document.querySelector("select");
 let device = document.querySelector("#device");
 
 sel.addEventListener("change", function(dets){
-    device.style.textTransform = "capitalize"
+    device.style.textTransform = "capitalize";
     device.textContent = `${dets.target.value} is selected`
 })
 
