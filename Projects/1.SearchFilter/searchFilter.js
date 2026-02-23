@@ -60,7 +60,10 @@ let users = [
 const main = document.querySelector(".main")
 
 function showUsers(arr){
-    arr.forEach(function(users){
+    arr.forEach(function(user){
+
+      console.log(arr)
+
 
         // create ourter card div 
         const card = document.createElement("div")
@@ -69,13 +72,13 @@ function showUsers(arr){
         // create image 
 
         const img = document.createElement("img");
-        img.src=users.pic;
+        img.src=user.pic;
         img.classList.add("big-img");
 
         // create blurred-layer div
         const blurredLayer = document.createElement("div");
         blurredLayer.classList.add("blurred-layer");
-        blurredLayer.style.backgroundImage = `url(${users.pic})`; // ✅ fixed
+        blurredLayer.style.backgroundImage = `url(${user.pic})`; // ✅ fixed
         
         // create content div
 
@@ -84,7 +87,7 @@ function showUsers(arr){
 
         // create h3 & paragraph 
         const heading = document.createElement("h3")
-        heading.textContent = users.name;
+        heading.textContent = user.name;
 
         const para = document.createElement("p");
         para.textContent = users.bio;
@@ -110,5 +113,5 @@ function showUsers(arr){
 
 }
 
-showUsers(users);
+// showUsers(users);
 

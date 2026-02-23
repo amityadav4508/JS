@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Call UI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Remix Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+    <!-- ================= LEFT FORM ================= -->
+    <div class="form-card">
+        <h2>New Call</h2>
+
+        <label>Image URL</label>
+        <input type="text" placeholder="https://example.com/photo.jpg">
+
+        <label>Full Name</label>
+        <input type="text" placeholder="Enter full name">
+
+        <label>Home Town</label>
+        <input type="text" placeholder="Enter home town">
+
+        <label>Purpose</label>
+        <input type="text" placeholder="e.g., Quick appointment note">
+
+        <label>Category</label>
+        <div class="tags">
+            <label class="tag-checkbox emergency">
+                <input type="radio" name="category" required>
+                <span>Emergency</span>
+            </label>
+
+            <label class="tag-checkbox important">
+                <input type="radio" name="category">
+                <span>Important</span>
+            </label>
+
+            <label class="tag-checkbox urgent">
+                <input type="radio" name="category">
+                <span>Urgent</span>
+            </label>
+
+            <label class="tag-checkbox norush">
+                <input type="radio" name="category">
+                <span>No Rush</span>
+            </label>
+        </div>
+
+        <button class="primary-btn">Create Note</button>
+        <button class="danger-btn">Close</button>
+    </div>
+
+    <!-- ================= RIGHT CARD ================= -->
+    <div class="right-wrapper">
+
+        <!-- NAV BUTTONS -->
+        <div class="nav">
+            <button><i class="ri-add-line"></i></button>
+            <button><i class="ri-arrow-up-s-line"></i></button>
+            <button><i class="ri-arrow-down-s-line"></i></button>
+        </div>
+
+        <!-- PROFILE CARD -->
+        <div class="profile-card">
+            <img src="https://i.pravatar.cc/100" alt="profile">
+
+            <h3>Fatima Uma</h3>
+
+            <div class="info">
+                <div>
+                    <p>Home town</p>
+                    <span>Singapore</span>
+                </div>
+                <div>
+                    <p>Bookings</p>
+                    <span>3 times</span>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button class="call">Call</button>
+                <button class="msg">Message</button>
+            </div>
+        </div>
+
+        <!-- COLOR DOTS -->
+        <div class="colors">
+            <span class="c1"></span>
+            <span class="c2"></span>
+            <span class="c3"></span>
+            <span class="c4"></span>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
