@@ -1,7 +1,16 @@
 
+//  1. sare users ko show karana
+// 2. filter karna har bar input karne pe 
+// show karna filtered users
+
 
 let users = [
     {
+      name: "Amit Sharma",
+      pic: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      bio: "Frontend developer who loves React and building clean UI designs."
+    },
+      {
       name: "Amit Sharma",
       pic: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       bio: "Frontend developer who loves React and building clean UI designs."
@@ -53,65 +62,56 @@ let users = [
     }
   ];
 
-//  1. sare users ko show karana
-// 2. filter karna har bar input karne pe 
-// show karna filtered users
 
-const main = document.querySelector(".main")
+const main = document.querySelector(".main");
+const inp = document.querySelector(".inp");
 
-function showUsers(arr){
-    arr.forEach(function(user){
+function showUsers(arr) {
+  main.innerHTML = ""; // clear once here
 
-      console.log(arr)
+  const fragment = document.createDocumentFragment();
 
+  arr.forEach(user => {
+    const card = document.createElement("div");
+    card.className = "card";
 
-        // create ourter card div 
-        const card = document.createElement("div")
-        card.classList.add("card")
+    const img = document.createElement("img");
+    img.src = user.pic;
+    img.className = "big-img";
 
-        // create image 
+    const blurredLayer = document.createElement("div");
+    blurredLayer.className = "blurred-layer";
+    blurredLayer.style.backgroundImage = `url(${user.pic})`;
 
-        const img = document.createElement("img");
-        img.src=user.pic;
-        img.classList.add("big-img");
+    const content = document.createElement("div");
+    content.className = "content";
 
-        // create blurred-layer div
-        const blurredLayer = document.createElement("div");
-        blurredLayer.classList.add("blurred-layer");
-        blurredLayer.style.backgroundImage = `url(${user.pic})`; // ✅ fixed
-        
-        // create content div
+    const heading = document.createElement("h3");
+    heading.textContent = user.name;
 
-        const content = document.createElement("div");
-        content.classList.add("content");
+    const para = document.createElement("p");
+    para.textContent = user.bio; // ✅ FIXED
 
-        // create h3 & paragraph 
-        const heading = document.createElement("h3")
-        heading.textContent = user.name;
+    content.append(heading, para);
+    card.append(img, blurredLayer, content);
+    fragment.appendChild(card);
+  });
 
-        const para = document.createElement("p");
-        para.textContent = users.bio;
-
-        //  append heading paragraph to content
-
-        content.appendChild(heading);
-        content.appendChild(para)
-
-        // Apeend all to card 
-
-        card.appendChild(img);
-        card.appendChild(blurredLayer);
-        card.appendChild(content);
-
-        main.appendChild(card)
-
-
-
-
-    })
-
-
+  main.appendChild(fragment);
 }
 
-// showUsers(users);
+// initial render
+showUsers(users);
+
+// filtering
+inp.addEventListener("input", () => {
+  const value = inp.value.trim().toLowerCase();
+
+  const filteredUsers = users.filter(user =>
+    user.name.toLowerCase().startsWith(value)
+    // or: includes(value)
+  );
+
+  showUsers(value ? filteredUsers : users);
+});
 
