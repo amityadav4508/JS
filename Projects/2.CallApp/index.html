@@ -15,62 +15,65 @@
 <div class="app">
 
     <!-- ================= LEFT FORM ================= -->
-    <div class="form-card">
+    <div class="form-container">
         <h2>New Call</h2>
 
-        <label>Image URL</label>
-        <input type="text" placeholder="https://example.com/photo.jpg">
+       <form action="">
+
+         <label>Image URL</label>
+        <input   type="text" placeholder="https://example.com/photo.jpg">
 
         <label>Full Name</label>
-        <input type="text" placeholder="Enter full name">
+        <input   type="text" placeholder="Enter Full name">
 
         <label>Home Town</label>
-        <input type="text" placeholder="Enter home town">
+        <input   type="text" placeholder="Enter home town">
 
         <label>Purpose</label>
-        <input type="text" placeholder="e.g., Quick appointment note">
+        <input   type="text" placeholder="e.g., Quick appointment note">
 
         <label>Category</label>
         <div class="tags">
             <label class="tag-checkbox emergency">
-                <input type="radio" name="category" required>
+                <input  type="radio" name="category" value="emergency">
                 <span>Emergency</span>
             </label>
 
             <label class="tag-checkbox important">
-                <input type="radio" name="category">
+                <input  type="radio" name="category" value="important">
                 <span>Important</span>
             </label>
 
             <label class="tag-checkbox urgent">
-                <input type="radio" name="category">
+                <input  type="radio" name="category" value="urgent">
                 <span>Urgent</span>
             </label>
 
             <label class="tag-checkbox norush">
-                <input type="radio" name="category">
+                <input  type="radio" name="category" value="radio">
                 <span>No Rush</span>
             </label>
         </div>
+        <button class="submit-btn" >Create Note</button>
+     </form>
 
-        <button class="primary-btn">Create Note</button>
-        <button class="danger-btn">Close</button>
+
+        <button class="close-Form">Close</button>
     </div>
 
     <!-- ================= RIGHT CARD ================= -->
-    <div class="right-wrapper">
+    <div class="note-container">
 
         <!-- NAV BUTTONS -->
         <div class="nav">
-            <button><i class="ri-add-line"></i></button>
-            <button><i class="ri-arrow-up-s-line"></i></button>
-            <button><i class="ri-arrow-down-s-line"></i></button>
+            <button class="add-note"><i class="ri-add-line">+</i></button>
+            <button><i class="ri-arrow-up-s-line"^></i></button>
+            <button><i class="ri-arrow-down-s-line">1</i></button>
         </div>
 
         <!-- PROFILE CARD -->
         <div class="profile-card">
             <img src="https://i.pravatar.cc/100" alt="profile">
-
             <h3>Fatima Uma</h3>
 
             <div class="info">
@@ -87,7 +90,7 @@
             <div class="actions">
                 <button class="call">Call</button>
                 <button class="msg">Message</button>
-            </div>
+                </div>
         </div>
 
         <!-- COLOR DOTS -->
@@ -101,6 +104,8 @@
     </div>
 
 </div>
+
+<script src="callApp.js"></script>
 
 </body>
 </html>

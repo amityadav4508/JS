@@ -63,11 +63,19 @@ let users = [
   ];
 
 
-const main = document.querySelector(".main");
+const cards = document.querySelector(".cards");
 const inp = document.querySelector(".inp");
 
 function showUsers(arr) {
-  main.innerHTML = ""; // clear once here
+  cards.innerHTML = ""; // clear once here
+
+    if (arr.length === 0) {
+    const error = document.createElement("p");
+    error.className = "error";
+    error.textContent = "User not found";
+    cards.appendChild(error);
+    return;
+  }
 
   const fragment = document.createDocumentFragment();
 
@@ -97,7 +105,7 @@ function showUsers(arr) {
     fragment.appendChild(card);
   });
 
-  main.appendChild(fragment);
+  cards.appendChild(fragment);
 }
 
 // initial render
@@ -111,6 +119,7 @@ inp.addEventListener("input", () => {
     user.name.toLowerCase().startsWith(value)
     // or: includes(value)
   );
+
 
   showUsers(value ? filteredUsers : users);
 });

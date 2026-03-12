@@ -57,3 +57,10 @@ body{
     color: #ddd;
     line-height: 1.4;
 }
+
+.error {
+  text-align: center;
+  font-size: 18px;
+  color: #ff4d4d;
+  margin-top: 20px;
+}
