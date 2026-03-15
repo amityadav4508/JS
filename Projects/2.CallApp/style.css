@@ -6,11 +6,19 @@
 }
 
 /* PAGE CENTER */
-body {
-    min-height: 100vh;
-    background: #f3f3f3;
+
+
+body{
+    height: 100vh;
     display: flex;
     justify-content: center;
+    align-items: center;
+    background:#111;
+}
+
+.card-wrapper{
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
@@ -18,6 +26,7 @@ body {
 .app {
     display: flex;
     gap: 50px;
+    justify-content: center;
     align-items: center;
 }
 
@@ -107,6 +116,8 @@ body {
 /* ================= RIGHT CARD ================= */
 .note-container {
     display: flex;
+    text-align: center;
+    justify-content: center;
     align-items: center;
     gap: 18px;
 }
@@ -130,15 +141,75 @@ body {
 }
 
 /* PROFILE CARD */
-.profile-card {
-    width: 260px;
-    background: #2c2c2c;
-    color: #fff;
-    border-radius: 22px;
-    padding: 22px;
-    text-align: center;
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:#111;
 }
 
+.cards{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.profile-card{
+    background:#2c2c2c;
+    color:#fff;
+    border-radius:22px;
+    padding:22px;
+    text-align:center;
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+    margin-top:-40px;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#111;
+}
+
+/* wrapper */
+.cards{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.cards{
+    display:grid;
+}
+
+/* PROFILE CARD */
+.profile-card{
+    grid-area:1/1; /* all cards in same place */
+    width:260px;
+    background:#2c2c2c;
+    color:#fff;
+    border-radius:22px;
+    padding:22px;
+    text-align:center;
+    box-shadow:0 8px 20px rgba(184, 184, 184, 0.2);
+     
+
+}
+
+/* 2px bottom stacking */
+.profile-card:nth-child(1){
+    transform:translateY(0);
+}
+
+.profile-card:nth-child(2){
+    transform:translateY(-10px);
+}
+
+.profile-card:nth-child(3){
+    transform:translateY(-20px);
+}
 .profile-card img {
     width: 70px;
     height: 70px;

@@ -4,11 +4,17 @@
 // filters ko handle karna hai
 
 
+// All VARIABLES AND DOC SELECTIONS 
 
 let addNote = document.querySelector(".add-note");
 let formContainer = document.querySelector(".form-container");
 let closeForm = document.querySelector(".close-Form")
-let noteContainer = document.querySelector(".note-container")
+let noteContainer = document.querySelector(".note-container");
+let color = document.querySelector(".colors");
+let cards = document.querySelector(".cards");
+
+
+
 
 const form = document.querySelector("form");
 
@@ -30,10 +36,44 @@ const purposeInput = form.querySelector(
 
 const categoryRadios =form.querySelectorAll("input[name='category']");
 
-const submitButton = form.querySelector(".submit-button")
+const submitButton = form.querySelector(".submit-button");
+
+
 
 
 //  CODE START HERE
+
+
+// to store the fomr data in local storage
+
+
+function saveToLocalStorage(obj){
+// puraane localStorage data nikalo
+    if(localStorage.getItem("tasks") === null){
+        let oldTasks = [];
+        oldTasks.push(obj);
+        localStorage.setItem("tasks", JSON.stringify(oldTasks));
+    }else{
+
+        let oldTasks = localStorage.getItem("tasks");
+        oldTasks = JSON.parse(oldTasks);
+        oldTasks.push(obj);
+        JSON.stringify(oldTasks)  // get actaul array
+        localStorage.setItem("tasks", JSON.stringify(oldTasks));
+    }
+
+ 
+
+}
+
+
+   let task =JSON.parse(localStorage.getItem("tasks"));
+
+    task.forEach(function(ts){
+        console.log(ts.imageUrl);
+    })
+
+
 
 addNote.addEventListener("click", function(){
     formContainer.style.display = "initial";
@@ -53,7 +93,6 @@ form.addEventListener("submit", function(evt){
     const fullName = fullNameInput.value.trim();
     const homeTown = homeTownInput.value.trim();
     const purpose = purposeInput.value.trim();
-
     let selected = false;
 
     categoryRadios.forEach(function(cat){
@@ -86,8 +125,108 @@ form.addEventListener("submit", function(evt){
         return
     }
 
-})
+    saveToLocalStorage({
+        imageUrl,
+        fullName,
+        purpose,
+        homeTown,
+        selected
+
+    });
+
+    form.reset();
+   formContainer.style.display = "none";
+   noteContainer.style.display = "flex";
+
+});
 
 
 
 
+//  ADD CARD Profile
+
+function ShowCardsProfile(){
+
+    let allTasks = JSON.parse(localStorage.getItem("tasks"));
+    allTasks.forEach(function(task){
+        
+let profileCard = document.createElement("div");
+profileCard.className = "profile-card";
+
+
+// Image
+let img = document.createElement("img");
+img.src = "https://i.pravatar.cc/100";
+img.alt = "profile";
+
+// Name
+let name = document.createElement("h3");
+name.textContent = "Fatima Uma";
+
+// Info container
+let info = document.createElement("div");
+info.className = "info";
+
+// Home town block
+let homeDiv = document.createElement("div");
+
+let homeP = document.createElement("p");
+homeP.textContent = "Home town";
+
+let homeSpan = document.createElement("span");
+homeSpan.textContent = "Singapore";
+
+homeDiv.appendChild(homeP);
+homeDiv.appendChild(homeSpan);
+
+// Bookings block
+let bookingDiv = document.createElement("div");
+
+let bookingP = document.createElement("p");
+bookingP.textContent = "Bookings";
+
+let bookingSpan = document.createElement("span");
+bookingSpan.textContent = "3 times";
+
+bookingDiv.appendChild(bookingP);
+bookingDiv.appendChild(bookingSpan);
+
+// append info blocks
+info.appendChild(homeDiv);
+info.appendChild(bookingDiv);
+
+// Actions
+let actions = document.createElement("div");
+actions.className = "actions";
+
+let callBtn = document.createElement("button");
+callBtn.className = "call";
+callBtn.textContent = "Call";
+
+let msgBtn = document.createElement("button");
+msgBtn.className = "msg";
+msgBtn.textContent = "Message";
+
+actions.appendChild(callBtn);
+actions.appendChild(msgBtn);
+
+// Final append
+profileCard.appendChild(img);
+profileCard.appendChild(name);
+profileCard.appendChild(info);
+profileCard.appendChild(actions);
+
+// Add to page
+noteContainer.insertBefore(profileCard, color);
+
+ cards.appendChild(profileCard)
+        
+ });
+
+
+ 
+
+
+};
+
+   ShowCardsProfile();
