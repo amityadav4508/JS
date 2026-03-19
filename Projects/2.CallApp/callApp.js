@@ -146,87 +146,79 @@ form.addEventListener("submit", function(evt){
 //  ADD CARD Profile
 
 function ShowCardsProfile(){
-
     let allTasks = JSON.parse(localStorage.getItem("tasks"));
+
     allTasks.forEach(function(task){
-        
-let profileCard = document.createElement("div");
-profileCard.className = "profile-card";
+        let profileCard = document.createElement("div");
+        profileCard.className = "profile-card";
 
+        // Image
+        let img = document.createElement("img");
+        img.src = task.imageUrl;
+        img.alt = "profile";
 
-// Image
-let img = document.createElement("img");
-img.src = "https://i.pravatar.cc/100";
-img.alt = "profile";
+        // Name
+        let name = document.createElement("h3");
+        name.textContent = task.fullName;
 
-// Name
-let name = document.createElement("h3");
-name.textContent = "Fatima Uma";
+     // Info container
+     let info = document.createElement("div");
+     info.className = "info";
 
-// Info container
-let info = document.createElement("div");
-info.className = "info";
+     // Home town block
+     let homeDiv = document.createElement("div");
 
-// Home town block
-let homeDiv = document.createElement("div");
+     let homeP = document.createElement("p");
+     homeP.textContent = "Home town";
 
-let homeP = document.createElement("p");
-homeP.textContent = "Home town";
+     let homeSpan = document.createElement("span");
+     homeSpan.textContent = "Purpose";
 
-let homeSpan = document.createElement("span");
-homeSpan.textContent = "Singapore";
+     homeDiv.appendChild(homeP);
+     homeDiv.appendChild(homeSpan);
 
-homeDiv.appendChild(homeP);
-homeDiv.appendChild(homeSpan);
+     // Bookings block
+     let bookingDiv = document.createElement("div");
 
-// Bookings block
-let bookingDiv = document.createElement("div");
+     let bookingP = document.createElement("p");
+     bookingP.textContent = task.homeTown;
 
-let bookingP = document.createElement("p");
-bookingP.textContent = "Bookings";
+     let bookingSpan = document.createElement("span");
+     bookingSpan.textContent = task.purpose;
 
-let bookingSpan = document.createElement("span");
-bookingSpan.textContent = "3 times";
+     bookingDiv.appendChild(bookingP);
+     bookingDiv.appendChild(bookingSpan);
 
-bookingDiv.appendChild(bookingP);
-bookingDiv.appendChild(bookingSpan);
+     // append info blocks
+     info.appendChild(homeDiv);
+     info.appendChild(bookingDiv);
 
-// append info blocks
-info.appendChild(homeDiv);
-info.appendChild(bookingDiv);
+     // Actions
+     let actions = document.createElement("div");
+     actions.className = "actions";
 
-// Actions
-let actions = document.createElement("div");
-actions.className = "actions";
+     let callBtn = document.createElement("button");
+     callBtn.className = "call";
+     callBtn.textContent = "Call";
 
-let callBtn = document.createElement("button");
-callBtn.className = "call";
-callBtn.textContent = "Call";
+     let msgBtn = document.createElement("button");
+     msgBtn.className = "msg";
+     msgBtn.textContent = "Message";
 
-let msgBtn = document.createElement("button");
-msgBtn.className = "msg";
-msgBtn.textContent = "Message";
+     actions.appendChild(callBtn);
+     actions.appendChild(msgBtn);
 
-actions.appendChild(callBtn);
-actions.appendChild(msgBtn);
+     // Final append
+     profileCard.appendChild(img);
+     profileCard.appendChild(name);
+     profileCard.appendChild(info);
+     profileCard.appendChild(actions);
 
-// Final append
-profileCard.appendChild(img);
-profileCard.appendChild(name);
-profileCard.appendChild(info);
-profileCard.appendChild(actions);
+     // Add to page
+     noteContainer.insertBefore(profileCard, color);
+     cards.appendChild(profileCard)
 
-// Add to page
-noteContainer.insertBefore(profileCard, color);
-
- cards.appendChild(profileCard)
-        
- });
-
-
- 
-
-
+     });
 };
 
-   ShowCardsProfile();
+ShowCardsProfile();
