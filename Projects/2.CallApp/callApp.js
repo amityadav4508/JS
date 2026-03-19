@@ -69,9 +69,9 @@ function saveToLocalStorage(obj){
 
    let task =JSON.parse(localStorage.getItem("tasks"));
 
-    task.forEach(function(ts){
-        console.log(ts.imageUrl);
-    })
+    // task.forEach(function(ts){
+    //     console.log(ts.imageUrl);
+    // })
 
 
 
