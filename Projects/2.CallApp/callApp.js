@@ -12,6 +12,9 @@ let closeForm = document.querySelector(".close-Form")
 let noteContainer = document.querySelector(".note-container");
 let color = document.querySelector(".colors");
 let cards = document.querySelector(".cards");
+let upBtn = document.querySelector("#upBtn");
+let downBtn = document.querySelector("#downBtn");
+
 
 
 
@@ -61,9 +64,6 @@ function saveToLocalStorage(obj){
         JSON.stringify(oldTasks)  // get actaul array
         localStorage.setItem("tasks", JSON.stringify(oldTasks));
     }
-
- 
-
 }
 
 
@@ -137,7 +137,7 @@ form.addEventListener("submit", function(evt){
     form.reset();
    formContainer.style.display = "none";
    noteContainer.style.display = "flex";
-
+   ShowCardsProfile();
 });
 
 
@@ -146,6 +146,8 @@ form.addEventListener("submit", function(evt){
 //  ADD CARD Profile
 
 function ShowCardsProfile(){
+    cards.innerHTML = "";
+
     let allTasks = JSON.parse(localStorage.getItem("tasks"));
 
     allTasks.forEach(function(task){
@@ -222,3 +224,35 @@ function ShowCardsProfile(){
 };
 
 ShowCardsProfile();
+
+//  function update cards
+
+function updateCards(){
+    const cards = document.querySelectorAll(".cards .profile-card")
+    for(let i = 0; i<3; i++){
+          profileCard.style.zIndex = 3 - i;
+        profileCard.style.transform = `translateY(${i*10}px) scale(${1-i * 0.02})`
+        profileCard.style.opacity = `${1 - i * 0.02}`
+    }
+};
+
+upBtn.addEventListener("click", function(){
+    let lastChild = cards.lastElementChild;
+    // console.log(lastChild);
+    if(lastChild){
+        cards.insertBefore(lastChild, cards.firstElementChild);
+    }
+    // update 
+    updateCards()
+});
+
+downBtn.addEventListener("click", function(){
+
+  const firstChild = cards.firstElementChild;
+    console.log(firstChild);
+    if(firstChild){
+        cards.appendChild(firstChild);
+    }
+        // update 
+    updateCards()
+})
