@@ -9,7 +9,7 @@ function abcd(){
 console.log(a);
 
 
-block scope:
+// block scope:
 if(b) {
     let a = 20;
 }
