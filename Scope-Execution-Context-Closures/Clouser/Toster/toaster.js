@@ -1,6 +1,6 @@
 function createToaster(config){
-    return function(notification){
 
+    return function(notification){
         let div = document.createElement("div")
         div.className = `inline-block ${config.theme==="dark" ? "bg-gray-800": "bg-gray-200 text-black"} px-6 py-3 rounded shadow-lg pointer-none transition-opacity`
 
