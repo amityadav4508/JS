@@ -71,6 +71,7 @@ let val = new Abcd();
 // method with ES5 fnc - object
 // method with es6 arrow fnc - window
 // es5 function inside es5 method - window
+// es5 function inside es5 function - object
 // arrow function inside es5 method - object
 // evetnt handler - element
 // class - blank object 
