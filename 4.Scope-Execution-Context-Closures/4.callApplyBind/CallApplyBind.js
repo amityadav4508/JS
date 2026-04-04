@@ -2,11 +2,9 @@
 // funcction ko call karte waqt aap set kr skte ho ki uski this ki value kay hogi
 
 
-
-
 // “CallApplyBind” it references the methods call, apply, and bind, which are used to control the execution context (this) of functions. These methods are fundamental in JavaScript for:
 
-// call: Invoking a function with a specified this value and arguments provided individually.
+// call: Invoking(To activate or call a function) a function with a specified this value and arguments provided individually.
 
 // apply: Similar to call, but arguments are passed as an array.
 
@@ -30,8 +28,23 @@ let obj2 = {
     age: 26,
 };
 
-function abcd(){
-    console.log(this, a, b, c,);
+function abcd2(a, b, c){
+    console.log(this, a, b, c);
 }
 
-abcd.call(obj2);
+abcd2.call(obj2, [1, 1, 3]);
+
+
+
+let obj3 = {
+    name: "harsh",
+    age: 26,
+};
+
+function abcd3(a, b, c){
+    console.log(this, a, b, c);
+}
+
+let fnc = abcd3.bind(obj2, 1, 1, 3);
+fnc()
+
