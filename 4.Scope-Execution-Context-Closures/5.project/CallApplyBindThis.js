@@ -52,7 +52,7 @@ this.users.forEach((user, index) => {
     const desc = document.createElement("p");
     desc.textContent = user.bio;
 
-    // ✅ Remove Button
+    // Remove Button
     const btn = document.createElement("button");
     btn.textContent = "Remove";
     btn.className = "mt-2 bg-red-500 text-white px-3 py-1 rounded";
