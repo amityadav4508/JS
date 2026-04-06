@@ -41,15 +41,9 @@ const categoryRadios =form.querySelectorAll("input[name='category']");
 
 const submitButton = form.querySelector(".submit-button");
 
-
-
-
 //  CODE START HERE
 
-
 // to store the fomr data in local storage
-
-
 function saveToLocalStorage(obj){
 // puraane localStorage data nikalo
     if(localStorage.getItem("tasks") === null){
