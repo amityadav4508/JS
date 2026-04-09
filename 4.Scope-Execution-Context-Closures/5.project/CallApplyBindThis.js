@@ -81,3 +81,24 @@ removeUser: function(index) {
 }
 }
 userManager.init();
+
+
+// decipher 
+
+console.log("Javascript is running");
+$ (document).ready(function () {
+
+    var form = document.querySelector("form");
+    if (!form) {
+        console.log("Form not found, skipping script");
+        return;
+    }
+
+   
+
+    console.log("FINAL OUTPUT:", formattedData);
+    
+    
+  
+    
+});
