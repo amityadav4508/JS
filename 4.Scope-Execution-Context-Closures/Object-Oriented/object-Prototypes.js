@@ -1,4 +1,4 @@
-// humein seekhna h, factories bannana, matlab ki aap ek baar blueprint bana do ki har object kaisa dikhega and hum log naye naye object with different values bana paayege, yhi upar upar se poora kaam hai OOPs mein.
+// humein seekhna h, factories bannana, matlab ki aap ek baar blueprint bana do ki har object kaisa dikhega and hum log naye naye object with different values bana paayege, yhi upar-upar se poora kaam hai OOPs mein.
 
 
 function CreateBiscuits(name, price, qty, comapany, category){
@@ -30,7 +30,7 @@ function CreatePencil(name, price, color, company){
     }
 }
 
-// aisa function jisko aap new chaltete ho use consturcture kahte hai aur ishiliye iska phle letter Capital karna chahiye.
+// aisa function jisko aap new se chaltete ho use consturcture kahte hai aur ishiliye iska phle letter Capital karna chahiye.
 // new ka matlab hota ek nya object ban jata h ye good practice hai.
 
 let pencil1 = new CreatePencil("Nataraj", 10, "blue", "nataraj");
