@@ -1,0 +1,36 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>MouseHover</title>
+<style>
+*{margin:0; padding:0; box-sizing:border-box;}
+html, body {width: 100%; height: 100%;}
+body{
+    overflow: hidden;
+}
+#abcd{
+    width: 400px; height: 400px; background-color: red; position: relative; transition: all cubic-bezier(0.95, 0.05, 0.795, 0.035);
+}
+
+</style></head><body>
+<div id="abcd"></div>
+
+<script>
+
+    let abcd = document.querySelector("#abcd");
+
+    window.addEventListener("mousemove", function(dets){
+
+        // console.log(dets.clientX,dets.clientY);
+        abcd.style.top = dets.clientY + "px";
+        abcd.style.left = dets.clientX + "px";
+
+
+   
+
+    })
+
+
+
+
+
+
+
+</script></body></html>

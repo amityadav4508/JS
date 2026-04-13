@@ -1,0 +1,112 @@
+<!-- 1. Setting the SelectedIndex embedded data on a prior page.
+     2. Enforcing selection rules (e.g., "select exactly N checkboxes") based on that index.
+     3. Displaying a dynamic error message.
+ -->
+
+
+Qualtrics.SurveyEngine.addOnPageSubmit(function () {
+    <!-- // Get all available choice IDs (e.g., ["1", "2", "3", ...]) -->
+    const choices = this.getChoices();
+
+    <!-- // Get the currently selected choice(s) — assuming single select -->
+    const selected = this.getSelectedChoices();
+
+    if (selected.length > 0) {
+        <!-- // Take the first selected choice -->
+        const selectedID = selected[0];
+
+        <!-- // Find its index in the original choices array -->
+        const index = choices.indexOf(selectedID);
+
+        <!-- // Store that index in embedded data for use on the next page -->
+        Qualtrics.SurveyEngine.setEmbeddedData("SelectedIndex", index);
+    }
+});
+
+
+
+
+Qualtrics.SurveyEngine.addOnload(function () {
+    <!-- // Get the container of the current question (where checkboxes exist) -->
+    const c2Container = this.getQuestionContainer();
+
+    <!-- // Find all checkbox input elements in the container -->
+    const c2Checkboxes = c2Container.querySelectorAll('input[type="checkbox"]');
+
+    <!-- // Find the Next button -->
+    const nextButton = document.querySelector('#NextButton');
+
+    <!-- // If Next button is not found, exit with an error in the console -->
+    if (!nextButton) {
+        console.error("Next button not found.");
+        return;
+    }
+
+    <!-- // Get the selected index from the embedded data set on previous page -->
+    const rawIndex = "${e://Field/SelectedIndex}";
+    let selectedIndex = parseInt(rawIndex, 10); // convert string to integer
+
+    if (isNaN(selectedIndex)) {
+        console.error("SelectedIndex is not a number.");
+        selectedIndex = 0; // fallback to 0 if invalid
+    }
+
+    <!-- // Person count is index + 1 (because index starts from 0) -->
+    const personCount = selectedIndex + 1;
+
+    <!-- // Require exactly (personCount - 1) selections; at least 1 minimum -->
+    const requiredSelections = Math.max(personCount - 1, 1);
+
+    <!-- // Try to get a custom error message from embedded data, or use default -->
+    const errorMessageText = "${e://Field/ErrorMessageText}" || `Please select exactly ${requiredSelections} option(s).`;
+
+    <!-- // Create a div for showing error messages -->
+    const errorMessage = document.createElement("div");
+    errorMessage.style.color = "red";
+    errorMessage.style.marginTop = "0px";
+    errorMessage.style.marginBottom = "10px";
+    errorMessage.style.fontWeight = "bold";
+    errorMessage.style.display = "none"; // hidden by default
+    errorMessage.setAttribute("aria-live", "polite");
+    errorMessage.textContent = errorMessageText;
+
+    <!-- // Try to insert the error message right under the question text -->
+    const questionTextDiv = c2Container.querySelector(".QuestionText");
+    if (questionTextDiv && questionTextDiv.parentNode) {
+        questionTextDiv.parentNode.insertBefore(errorMessage, questionTextDiv.nextSibling);
+    } else {
+        <!-- // If not found, append at the bottom of the question -->
+        c2Container.appendChild(errorMessage);
+    }
+
+    <!-- // Function to count how many checkboxes are currently selected -->
+    function getCheckedCount() {
+        return Array.from(c2Checkboxes).filter(cb => cb.checked).length;
+    }
+
+    <!-- // Function to update the UI: Enable/Disable Next button and show/hide error -->
+    function updateUI() {
+        const checked = getCheckedCount();
+
+        <!-- // Enable Next only if user selects exactly the required number -->
+        nextButton.disabled = checked !== requiredSelections;
+
+        <!-- // Show error message only if too many boxes are checked -->
+        if (checked > requiredSelections) {
+            errorMessage.style.display = "block";
+        } else {
+            errorMessage.style.display = "none";
+        }
+    }
+
+    <!-- // Attach change listeners to all checkboxes to call updateUI() on click -->
+    function attachHandlers() {
+        c2Checkboxes.forEach(cb => {
+            cb.addEventListener('change', updateUI);
+        });
+    }
+
+    <!-- // Initial UI update and event handler attachment -->
+    updateUI();
+    attachHandlers();
+});

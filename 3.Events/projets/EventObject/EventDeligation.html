@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Deligation</title>
+    <style>
+#abcd{
+    width: 400px; height: 400px; background-color: red; position: relative; transition: all cubic-bezier(0.95, 0.05, 0.795, 0.035);
+}
+.lt{
+    text-decoration: line-through;
+}
+</style></head><body>
+    
+    <ul>
+        <li>apple</li>
+        <li>guava</li>
+        <li>graps</li>
+        <li>banana</li>
+    </ul>
+    <script>
+
+
+let ul = document.querySelector("ul")
+
+ul.addEventListener("click", function(el){
+    // el.target.classList.add("lt")
+    el.target.classList.toggle("lt")
+})
+
+
+    </script></body></html>

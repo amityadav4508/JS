@@ -1,0 +1,29 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>MouseHover</title>
+<style>
+*{margin:0; padding:0; box-sizing:border-box;}
+html, body {width: 100%; height: 100%;}
+#abcd{
+    width: 400px; height: 400px; background-color: red;
+}
+
+</style></head><body>
+<div id="abcd"></div>
+
+<script>
+
+let abcd = document.querySelector("#abcd");
+
+abcd.addEventListener("mouseover", function(){
+    abcd.style.backgroundColor="yellow";
+})
+abcd.addEventListener("mouseout", function(){
+    abcd.style.backgroundColor="red";
+})
+
+
+
+
+
+
+
+</script></body></html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <style>
+        body{
+            height: 100vh;
+            background-image: linear-gradient(to right top, #051937, #004793, #008793, #00bf72, #a8eb12);
+        }
+        section{
+            justify-content: center;
+            align-items: center;
+            gap: 3.2rem;
+        }
+        #myButton{
+            background-color: rgb(168, 235, 18);
+            color: rgb(34, 34, 34);
+        }
+
+
+        /*   <!-- what is the hexam decimal-- In a hexadecimal system, digits are represented using standard symbols such as 0, 1, 2, 3, 4, 5, 6, 7, 8, and 9 for the corresponding values, and the first six letters of the alphabet—A, B, C, D, E, F—for values 10 through 15. -- > */
+
+    </style>
+  
+    
+</body>
+<section>
+    <div>
+        <button id="myButton1">#051937</button>
+        <button id="myButton2">#051937</button>
+    </div>
+    <h2>Copy code here</h2>
+
+    <div class="copyCode">
+        background-image:linnear-gradient(to right, rgb(91, 145, 229), rgb(152, 63, 198))
+    </div>
+</section>
+
+
+<script>
+
+    let btn1 = document.getElementById("myButton1");
+        let btn2 = document.getElementById("myButton2");
+
+        const handleButton1 = () => {
+            let myHexaValue = "1234567899abcdef";
+            let colors = "#";
+            for (let i = 0; i<=6; i++){
+               colors= colors + myHexaValue[Math.floor(Math.random()*16)];
+            }
+
+            console.log(colors); 
+        };
+
+        const handleButton2 = () => {
+            console.log("Button 2 clicked");
+        }
+
+        btn1.addEventListener("click", handleButton1);
+        btn2.addEventListener("click", handleButton2);
+
+
+
+
+</script>
+</html>

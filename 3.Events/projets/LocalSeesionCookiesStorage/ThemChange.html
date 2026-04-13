@@ -1,0 +1,90 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Them Toggle</title>
+
+
+    <style>
+
+
+        body.dark {
+            background-color: rgb(34, 34, 34);
+            color: white;
+        }
+        
+        body.light {
+            background-color: white;
+            color: black;
+        }
+                body{
+                    margin: 0; font-family: Arial, Helvetica, sans-serif;
+                    transition: background-color 0.3s ease, color 0.3s ease;
+                }
+                .container{
+                    height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+                }
+                button{
+                    margin-top: 20px;
+                    padding: 10px 20px;
+                    font-size: 16px;
+                    cursor: pointer;
+                }
+            </style>
+    
+</head>
+<body class="dark" >
+
+        <div class="container">
+            <h3>theme Preference</h3>
+            <button id="toggleTheme">Toggle Theme</button>
+    </div>
+<script>
+    //  how to get the oprtin system display dark or light in js, just property  
+   
+
+    function setDarkLight() {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.body.classList.add("dark");
+        document.body.classList.remove("light");
+    } else {
+        document.body.classList.add("light");
+        document.body.classList.remove("dark");
+    }
+}
+   
+
+    if(localStorage.getItem("theme")){
+        document.body.classList.add(localStorage.getItem("theme"));
+    }else{
+        setDarkLight();
+    }
+
+
+
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function(){
+        if(localStorage.getItem("theme")){
+            setDarkLight();
+        }
+   
+
+    })
+
+
+    let btn = document.querySelector("button");
+
+    btn.addEventListener("click", function(){
+             if(document.body.classList.contains("dark")){
+                document.body.classList.remove("dark");
+                document.body.classList.add("light");
+                localStorage.setItem("theme", "light")
+
+             } else{
+                document.body.classList.remove("light");
+                document.body.classList.add("dark")
+                localStorage.setItem("theme", "dark")
+
+             }
+    })
+
+// optimized code
+
+</script>
+</body>
+</html>

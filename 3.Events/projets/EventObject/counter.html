@@ -1,0 +1,40 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Counter Js</title>
+<style>
+*{margin:0; padding:0; box-sizing:border-box;}
+html, body {width: 100%; height: 100%;}
+body{
+    overflow: hidden;
+}
+#abcd{
+    width: 400px; height: 400px; background-color: red; position: relative; transition: all cubic-bezier(0.95, 0.05, 0.795, 0.035);
+}
+
+</style></head><body>
+    <input type="text" placeholder="write anything">
+    <h1>Total Characters left: <span>0</span></h1>
+
+<script>
+
+let input = document.querySelector("input");
+let span = document.querySelector("span");
+
+input.addEventListener("input", function(evnt){
+    let left = 20- input.value.length;
+    span.textContent = left;
+
+    if(left < 0){
+        span.style.color = "red";
+    } else{
+        span.style.color="black";
+
+
+    }
+    
+    
+})
+
+
+
+
+
+</script></body></html>

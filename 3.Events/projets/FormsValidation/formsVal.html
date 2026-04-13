@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Email & Password Validator</title>
+  <link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+
+  <div class="container">
+    <h2>Login Form</h2>
+
+    <form autocomplete="off" id="loginForm" novalidate>
+
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="text" id="email" placeholder="Enter your email">
+        <small class="error" id="emailError"></small>
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password">
+        <small class="error" id="passwordError"></small>
+      </div>
+
+      <button type="submit">Submit</button>
+      <p id="ressultMessage">kldjf</p>
+
+    </form>
+  </div>
+
+  <!-- JS will go here later -->
+  <script src="formsVal.js"></script>
+
+</body>
+</html>
