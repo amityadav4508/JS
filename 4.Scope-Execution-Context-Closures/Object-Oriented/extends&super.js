@@ -1,9 +1,9 @@
-// Extends and super
+// Extends and Super
 
-// nai clas pichalis class ki kuchh value hold kar skti hai. 
+// nayi class purani class ki kuchh values (properties/methods) hold kar sakti hai
 
-class User{
-    constructor(name, address, username, email){
+class User {
+    constructor(name, address, username, email) {
         this.name = name;
         this.address = address;
         this.username = username;
@@ -11,69 +11,78 @@ class User{
         this.role = "user";
     }
 
-    checkRole(){
-        console.log(`You are are a ${this.role}`)
+    // user ka role check karne ke liye method
+    checkRole() {
+        console.log(`You are a ${this.role}`);
     }
 
-    write(text){
-     let h1 =  document.createElement("h1")
-     h1.textContent = ` ${this.name} : ${text}`;
-     document.body.appendChild(h1);
+    // screen par text likhne ke liye method
+    write(text) {
+        let h1 = document.createElement("h1");
+        h1.textContent = `${this.name} : ${text}`;
+        document.body.appendChild(h1);
     }
 }
 
 
+// Admin class User ko extend kar rahi hai
+class Admin extends User {
 
-class Admin extends User{
+    // jab aap extend karte ho to constructor me parent ki saari values leni padti hain
+    // aur super() me bhi pass karni padti hain
+    constructor(name, address, username, email) {
+        super(name, address, username, email);
 
-    // jab ap extend kroget to construcor me jo jo ap upar hai sab accept karna padega and super me bhi sab kuchh pass karna padega
-    constructor(name, address, username, email){
-        super(name, address, username, email)
-
-        // admin ki kud ki value 
-        this.role = "admin"
+        // admin ki apni value (override)
+        this.role = "admin";
     }
 
-    // remove method ka keval admin ke pass access rehega 
-
-    remove(){
-        document.querySelectorAll("h1").forEach(function(elm){
+    // remove method ka access sirf admin ke paas hoga
+    remove() {
+        document.querySelectorAll("h1").forEach(function (elm) {
             elm.remove();
-
-        })
-
+        });
     }
-
-
-
 }
 
 
-// objects
+// Objects (instances)
 let u1 = new User("Harsh", "Bhopal", "async123", "hey@heyehey.com");
-let u2 = new User("Tanya", "Bhopal", "async123", "tanya@heyehey.com");
-let a1 = new Admin("Gaurav", "Agra", "async123", "gaurav@heyehey.com");
+let u2 = new User("Tanya", "Bhopal", "async456", "tanya@heyehey.com");
+let a1 = new Admin("Gaurav", "Agra", "admin123", "gaurav@heyehey.com");
 
 
+// Testing
+u1.write("Hello from user 1");
+u2.write("Hello from user 2");
+
+a1.write("Hello from admin");
+a1.checkRole(); // admin
+
+// a1.remove(); // isko uncomment karoge to saare h1 delete ho jayenge
 
 
-//  Classical inheritance - classess banna and unhe extends krdena
+// ----------------------------
+// Classical vs Prototypical Inheritance
+// ----------------------------
 
-// inheritance - class se  class 
+// Classical inheritance - classes bana kar unhe extend karna
+// inheritance - class se class
 
-// Prototypical inheritance  - opject se object
 
-// ek object hai aap chaaho to uski saari props/method ko inherit kara dete ho doosre object mein
-
+// Prototypical inheritance - object se object
+// ek object hai, aap chaaho to uski saari props/method doosre object me inherit kara sakte ho
 
 let coffee = {
     color: "dark",
-    drink: function(){
+    drink: function () {
         console.log("gutgut gut");
-    },
-}
+    }
+};
 
-let ArabiataCoffee = Object.create(coffee);
-console.log(ArabiataCoffee);
-ArabiataCoffee.drink();
+// coffee object ko base bana kar naya object create kiya
+let arabicaCoffee = Object.create(coffee);
 
+// ye properties prototype se aa rahi hain
+console.log(arabicaCoffee.color); // dark
+arabicaCoffee.drink(); // gutgut gut

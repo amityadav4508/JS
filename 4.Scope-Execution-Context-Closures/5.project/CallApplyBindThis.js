@@ -1,104 +1,105 @@
-
 console.log("code is running");
+
+// Select DOM elements
 let form = document.querySelector("form");
 let userName = document.querySelector("#name");
-let role = document.querySelector("#role");
+let roleInput = document.querySelector("#role"); // renamed to avoid conflict
 let bio = document.querySelector("#bio");
-let photourl = document.querySelector("#photourl")
-let ProfileCards = document.querySelector(".ProfileCards")
+let photourl = document.querySelector("#photourl");
+let profileCards = document.querySelector(".profileCards"); // fixed class name
 
 const userManager = {
-    
-    users:[],
-    init: function() {
+
+    // Array to store users
+    users: [],
+
+    // Initialize app
+    init: function () {
+        // Bind 'this' so it refers to userManager
         form.addEventListener("submit", this.submitForm.bind(this));
     },
 
-    submitForm: function(e){
-        e.preventDefault();
+    // Handle form submit
+    submitForm: function (e) {
+        e.preventDefault(); // stop page reload
         this.addUser();
     },
 
-    addUser: function() {
+    // Add user to array
+    addUser: function () {
         this.users.push({
             userName: userName.value,
-            role: role.value,
+            role: roleInput.value,
             bio: bio.value,
-            photourl: photourl.value, 
+            photourl: photourl.value,
         });
-        form.reset();
-        this.renderUi();
-    },
-    renderUi: function(){
-        document.querySelector(".profileCards").innerHTML= "";
-this.users.forEach((user, index) => {
 
-    const userCard = document.createElement("div");
-    userCard.className = "userCard bg-white shadow-md rounded-lg overflow-hidden";
-
-    const img = document.createElement("img");
-    img.src = user.photourl;
-    img.className = "w-40 h-40 rounded-full object-cover";
-
-    const content = document.createElement("div");
-    content.className = "p-4";
-
-    const name = document.createElement("h3");
-    name.textContent = user.userName;
-
-    const role = document.createElement("p");
-    role.textContent = user.role;
-
-    const desc = document.createElement("p");
-    desc.textContent = user.bio;
-
-    // Remove Button
-    const btn = document.createElement("button");
-    btn.textContent = "Remove";
-    btn.className = "mt-2 bg-red-500 text-white px-3 py-1 rounded";
-
-    btn.addEventListener("click", () => {
-        this.removeUser(index);
-    });
-
-    content.appendChild(name);
-    content.appendChild(role);
-    content.appendChild(desc);
-    content.appendChild(btn);
-
-    userCard.appendChild(img);
-    userCard.appendChild(content);
-
-    document.querySelector(".profileCards").appendChild(userCard);
-});
+        form.reset(); // clear form
+        this.renderUi(); // update UI
     },
 
-removeUser: function(index) {
-    const removedUser = this.users.splice(index, 1); // remove from array
-    this.renderUi(); // UI refresh
+    // Render UI cards
+    renderUi: function () {
+        profileCards.innerHTML = ""; // clear old cards
 
-    console.log(removedUser);
-}
-}
-userManager.init();
+        this.users.forEach((user, index) => {
 
+            // Create card container
+            const userCard = document.createElement("div");
+            userCard.className = "userCard bg-white shadow-md rounded-lg overflow-hidden";
 
-// decipher 
+            // Profile image
+            const img = document.createElement("img");
+            img.src = user.photourl;
+            img.className = "w-40 h-40 rounded-full object-cover";
 
-console.log("Javascript is running");
-$ (document).ready(function () {
+            // Content container
+            const content = document.createElement("div");
+            content.className = "p-4";
 
-    var form = document.querySelector("form");
-    if (!form) {
-        console.log("Form not found, skipping script");
-        return;
+            // Name
+            const nameEl = document.createElement("h3"); // renamed
+            nameEl.textContent = user.userName;
+
+            // Role
+            const roleEl = document.createElement("p"); // renamed
+            roleEl.textContent = user.role;
+
+            // Bio
+            const desc = document.createElement("p");
+            desc.textContent = user.bio;
+
+            // Remove Button
+            const btn = document.createElement("button");
+            btn.textContent = "Remove";
+            btn.className = "mt-2 bg-red-500 text-white px-3 py-1 rounded";
+
+            // Remove user on click
+            btn.addEventListener("click", () => {
+                this.removeUser(index);
+            });
+
+            // Append elements
+            content.appendChild(nameEl);
+            content.appendChild(roleEl);
+            content.appendChild(desc);
+            content.appendChild(btn);
+
+            userCard.appendChild(img);
+            userCard.appendChild(content);
+
+            profileCards.appendChild(userCard); // use stored variable
+        });
+    },
+
+    // Remove user
+    removeUser: function (index) {
+        const removedUser = this.users.splice(index, 1); // remove from array
+        this.renderUi(); // refresh UI
+
+        console.log(removedUser);
     }
+};
 
-   
-
-    console.log("FINAL OUTPUT:", formattedData);
-    
-    
-  
-    
-});
+// Start app
+userManager.init();
