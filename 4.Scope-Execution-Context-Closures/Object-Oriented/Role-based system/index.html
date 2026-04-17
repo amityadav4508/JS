@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>User Manager (Admin Enabled)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-5">
+
+    <!-- FORM -->
+    <form class="mb-5 space-y-2">
+        <input id="name" type="text" placeholder="Name" class="border p-2 w-full" />
+        <input id="role" type="text" placeholder="Role (Admin/User)" class="border p-2 w-full" />
+        <input id="photourl" type="text" placeholder="Photo URL" class="border p-2 w-full" />
+        <textarea id="bio" placeholder="Bio" class="border p-2 w-full"></textarea>
+
+        <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">
+            Save User
+        </button>
+    </form>
+
+    <!-- SEARCH -->
+    <input id="search" type="text" placeholder="Search..." class="border p-2 w-full mb-5" />
+
+    <!-- USER CARDS -->
+    <div class="profileCards grid grid-cols-3 gap-4"></div>
+
+<script src="role-base.js"></script>
+
+
+</body>
+</html>
