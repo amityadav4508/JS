@@ -1,7 +1,8 @@
 
 // Portotypes - means extra memory or shared memory
 
-// agar tumhar constructor function koi field apne prototype par attach karle to us constructor se banane wale sabhi new instance yani ki objects ke pass wo filed automatically chali jati hai. 
+/* agar tumhar constructor function koi field apne prototype par attach karle to us constructor 
+se banane wale sabhi new instance yani ki objects ke pass wo filed automatically chali jati hai.  */
 
 
 function CreatePencilP(name, price, color, company){
@@ -19,6 +20,8 @@ CreatePencilP.prototype.write = function(text){
         document.body.appendChild(h1);
     }
 
+
+// This is the shared memory 
 CreatePencilP.prototype.company = "sheryians";
 
 

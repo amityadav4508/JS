@@ -62,16 +62,14 @@ a1.checkRole(); // admin
 // a1.remove(); // isko uncomment karoge to saare h1 delete ho jayenge
 
 
-// ----------------------------
-// Classical vs Prototypical Inheritance
-// ----------------------------
+/* Classical vs Prototypical Inheritance*/
 
-// Classical inheritance - classes bana kar unhe extend karna
-// inheritance - class se class
+/* Classical inheritance - classes bana kar unhe extend karna
+ inheritance - class se class */
 
 
-// Prototypical inheritance - object se object
-// ek object hai, aap chaaho to uski saari props/method doosre object me inherit kara sakte ho
+/* Prototypical inheritance - object se object
+ek object hai, aap chaaho to uski saari props/method doosre object me inherit kara sakte ho */
 
 let coffee = {
     color: "dark",

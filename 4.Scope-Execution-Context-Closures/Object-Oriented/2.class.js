@@ -1,5 +1,9 @@
 // cunstructuror funcion ko decorate karke likhne ke tari ko class kahte hai. 
 
+    /*constructor(){} - constructor ka kam hota hai default value set karna ya initialze karna,
+     variables create karna  */
+
+
 class CreatePen{
     constructor(name, company, price, color){
         this.name = name;
