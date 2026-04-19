@@ -1,11 +1,8 @@
-// Extends and Super
-// extends ka use hota hai ek class ko dusri class se inherit karne ke liye.
-//  Matlab: child class parent class ke properties + methods youse kar sakta hai.
+/* Extends and Super:
+   extends: ka use hota hai ek class ko dusri class se inherit karne ke liye.
+   Matlab: child class parent class ke properties + methods youse kar sakta hai. */
 
-
-// super ka use hota hai parent class ke constructor ya methods ko call karne ke liye.
-
-
+// super: ka use hota hai parent class ke constructor ya methods ko call karne ke liye.
 
 // nayi class purani class ki kuchh values (properties/methods) hold kar sakti hai
 
@@ -69,7 +66,7 @@ a1.checkRole(); // admin
 // a1.remove(); // isko uncomment karoge to saare h1 delete ho jayenge
 
 
-/* Classical vs Prototypical Inheritance*/
+//Classical vs Prototypical Inheritance
 
 /* Classical inheritance - classes bana kar unhe extend karna
  inheritance - class se class */

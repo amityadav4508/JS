@@ -1,10 +1,9 @@
-/* humein seekhna h, factories bannana, matlab ki aap ek baar blueprint bana do ki har object kaisa
+/* OPPS: humein seekhna h, factories bannana, matlab ki aap ek baar blueprint bana do ki har object kaisa
  dikhega and hum log naye naye object with different values bana paayege, yhi upar-upar se poora
 kaam hai OOPs mein. */
 
-
 /* aisa function jisko aap new se chaltete ho use consturcture kahte hai aur ishiliye iska phle letter Capital karna chahiye.
-New ka matlab hota ek nya object ban jata h ye good practice hai. */
+   New: ka matlab hota ek nya object ban jata h ye good practice hai. */
 
 
 
