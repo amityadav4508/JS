@@ -2,14 +2,21 @@
 // funcction ko call karte waqt aap set kr skte ho ki uski this ki value kay hogi
 
 
-// “CallApplyBind” it references the methods call, apply, and bind, which are used to control the execution context (this) of functions. These methods are fundamental in JavaScript for:
+//JavaScript ke methods hain: call, apply, aur bind.
+// Inka use hota hai function ka execution context (this) control karne ke liye.
 
-// call: Invoking(To activate or call a function) a function with a specified this value and arguments provided individually.
+// call:
+// call ka use karke hum kisi function ko manually invoke (run) kar sakte hain
+// aur usme this ki value set kar sakte hain.
+// Arguments yahan individually pass hote hain.
 
-// apply: Similar to call, but arguments are passed as an array.
+// apply:
+// apply bhi call jaisa hi hai,
+// bas difference yeh hai ki isme arguments array ke form mein pass hote hain.
 
-// bind: Creates a new function with a permanently bound this value, useful for callbacks and event handlers.
-
+// bind:
+// bind ek naya function return karta hai jisme this permanently set ho jata hai.
+// Yeh zyada useful hota hai callbacks aur event handlers mein.
 
 
 let obj = {

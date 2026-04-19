@@ -41,7 +41,7 @@ let pencil2 = new CreatePencil("Doms", 5, "red", "coms")
 
 // Portotypes - means extra memory or shared memory
 
-// agar tumhar constructor function koi fiel apne prototype par attach karle to us constructor se banane wale sabhi new instance yani ki objects ke pass wo filed automatically chali jati hai. 
+// agar tumhar constructor function koi fiedl apne prototype par attach karle to us constructor se banane wale sabhi new instance yani ki objects ke pass wo filed automatically chali jati hai. 
 
 // ye 
 

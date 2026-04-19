@@ -1,4 +1,11 @@
 // Extends and Super
+// extends ka use hota hai ek class ko dusri class se inherit karne ke liye.
+//  Matlab: child class parent class ke properties + methods youse kar sakta hai.
+
+
+// super ka use hota hai parent class ke constructor ya methods ko call karne ke liye.
+
+
 
 // nayi class purani class ki kuchh values (properties/methods) hold kar sakti hai
 
