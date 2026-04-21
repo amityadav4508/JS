@@ -10,11 +10,7 @@ function CreateBiscuits(name, price, qty, comapany, category){
 }
 
 let biscuites1 = new CreateBiscuits("Oreo", 10, 5, "Cadbury",  "choclate");
-
 let biscuites2 = new CreateBiscuits("fantsy", 20, 3, "parle", "Choclate sunfeaset")
-
-
-
 
 function CreatePencil(name, price, color, company){
     this.name = name;
@@ -26,7 +22,6 @@ function CreatePencil(name, price, color, company){
         h1.textContent = "Hey HOw Are YOU"
         h1.style.color = color;
         document.body.appendChild(h1);
-
     }
 }
 
@@ -49,7 +44,6 @@ function CreatePencilP(name, price, color, company){
     this.price = price;
     this.color = color;
     this.company = "sheryians";
-  
 }
 
 CreatePencilP.prototype.write = function(text){
@@ -61,9 +55,7 @@ CreatePencilP.prototype.write = function(text){
 
 CreatePencilP.prototype.company = "sheryians";
 
-
 let pencilP1 = new CreatePencilP("Nataraj", 10, "blue", "nataraj");
-
 let pencilP2 = new CreatePencilP("Doms", 5, "red", "coms")
 
 
