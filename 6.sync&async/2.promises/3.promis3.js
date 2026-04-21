@@ -51,19 +51,23 @@ var p4 = p3.then(function(data){
 
  // async await 
 
- // koi bhi esa function jisme aap async code likhege, kyoki async code hai to aap promises ka istemaal kar skte hai, jab uska answer ayega aapko then lagana padega, us then ko langaane se bachne ke liye, aap async await ka istemaal kar skte hai.
+/*   koi bhi esa function jisme aap async code likhege, kyoki 
+  async code hai to aap promises ka istemaal kar skte hai,
+  jab uska answer ayega aapko then lagana padega, us then ko langaane 
+  se bachne ke liye, aap async await ka istemaal kar skte hai. */
 
 
 
-// function abcd(){
-//     fetch(`https://randomuser.me/api/`)
-//     .then(function(raw){
-//         return raw.json();
-//     })
-//     .then(function(data){
-//         console.log(data)
-//     })
-// }
+/*  function abcd(){
+     fetch(`https://randomuser.me/api/`)
+     .then(function(raw){
+         return raw.json();
+     })
+     .then(function(data){
+         console.log(data)
+     })
+ }
+ */
 
 async function abcd(){
     let raw = await fetch(`https://randomuser.me/api/`)
@@ -73,8 +77,9 @@ async function abcd(){
 
 }
 
-
-// Jab bhi koi code async hai to aapko uske liye wait krna padta hai kuki hme nhi pata uska answer kab ayega
+/* 
+ Jab bhi koi code async hai to aapko uske liye wait krna padta hai kyuki hme nhi 
+ pata uska answer kab ayega */
 
 abcd();
 

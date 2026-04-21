@@ -1,4 +1,6 @@
-// aap ek promise banaate ho jo ki do states mein se ak state me jaa sakta hia and wo yaa to resolve hoga ya to reject hoga, ab wo wakqt bataayega par hume dono ke liye code likhna padta hai. 
+/* aap ek promise banaate ho jo ki do states mein se ak state me jaa sakta hia and wo
+  yaa to resolve hoga ya to reject hoga, ab wo wakqt bataayega par hume dono 
+ ke liye code likhna padta hai.  */
 
 
 let pr = new Promise(function (res, rej) { 
