@@ -7,14 +7,20 @@
 let pr = new Promise(function (res, rej) { 
     setTimeout(()=>{
        let rn = Math.floor(Math.random()*10);
-       if(rn>5) res("resolved with" + rn)
-        else rej("reject with" + rn)
+       if(rn>5) res("resolved with " + rn)
+        else rej("reject with " + rn)
     }, 3000);
  })
 
-
+// async kahta hai ki ander ke code ko try and cath me rkho 
  async function abcd(){
-      let val = await pr;
+      try{
+        let val = await pr;
+        console.log(val)
+      }
+      catch(err){
+        console.log(err)
+      }
  }
 
  abcd();
