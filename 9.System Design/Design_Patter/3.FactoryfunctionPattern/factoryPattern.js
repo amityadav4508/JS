@@ -11,6 +11,8 @@ function createProduct(name, price){
                 stock -= qty;
                 console.log(`${qty} pices booked - ${stock} pieces left.`)
             }
-        }
+        },
+
+        
     }
 }
